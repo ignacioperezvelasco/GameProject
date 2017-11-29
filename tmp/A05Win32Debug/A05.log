@@ -1,0 +1,27 @@
+﻿  A05Base.cpp
+c:\users\ignacioperezvelasco\source\repos\gameproject\scr\a05\a05base.cpp(73): warning C4806: '&': unsafe operation: no value of type 'bool' promoted to type 'const Uint8' can equal the given constant
+c:\users\ignacioperezvelasco\source\repos\gameproject\scr\a05\a05base.cpp(15): warning C4297: 'SDL_main': function assumed not to throw an exception but does
+  c:\users\ignacioperezvelasco\source\repos\gameproject\scr\a05\a05base.cpp(15): note: __declspec(nothrow), throw(), noexcept(true), or noexcept was specified on the function
+c:\users\ignacioperezvelasco\source\repos\gameproject\scr\a05\a05base.cpp(17): warning C4297: 'SDL_main': function assumed not to throw an exception but does
+  c:\users\ignacioperezvelasco\source\repos\gameproject\scr\a05\a05base.cpp(17): note: __declspec(nothrow), throw(), noexcept(true), or noexcept was specified on the function
+c:\users\ignacioperezvelasco\source\repos\gameproject\scr\a05\a05base.cpp(18): warning C4297: 'SDL_main': function assumed not to throw an exception but does
+  c:\users\ignacioperezvelasco\source\repos\gameproject\scr\a05\a05base.cpp(18): note: __declspec(nothrow), throw(), noexcept(true), or noexcept was specified on the function
+c:\users\ignacioperezvelasco\source\repos\gameproject\scr\a05\a05base.cpp(21): warning C4297: 'SDL_main': function assumed not to throw an exception but does
+  c:\users\ignacioperezvelasco\source\repos\gameproject\scr\a05\a05base.cpp(21): note: __declspec(nothrow), throw(), noexcept(true), or noexcept was specified on the function
+c:\users\ignacioperezvelasco\source\repos\gameproject\scr\a05\a05base.cpp(30): warning C4297: 'SDL_main': function assumed not to throw an exception but does
+  c:\users\ignacioperezvelasco\source\repos\gameproject\scr\a05\a05base.cpp(30): note: __declspec(nothrow), throw(), noexcept(true), or noexcept was specified on the function
+c:\users\ignacioperezvelasco\source\repos\gameproject\scr\a05\a05base.cpp(35): warning C4297: 'SDL_main': function assumed not to throw an exception but does
+  c:\users\ignacioperezvelasco\source\repos\gameproject\scr\a05\a05base.cpp(35): note: __declspec(nothrow), throw(), noexcept(true), or noexcept was specified on the function
+c:\users\ignacioperezvelasco\source\repos\gameproject\scr\a05\a05base.cpp(62): warning C4297: 'SDL_main': function assumed not to throw an exception but does
+  c:\users\ignacioperezvelasco\source\repos\gameproject\scr\a05\a05base.cpp(62): note: __declspec(nothrow), throw(), noexcept(true), or noexcept was specified on the function
+c:\users\ignacioperezvelasco\source\repos\gameproject\scr\a05\a05base.cpp(64): warning C4297: 'SDL_main': function assumed not to throw an exception but does
+  c:\users\ignacioperezvelasco\source\repos\gameproject\scr\a05\a05base.cpp(64): note: __declspec(nothrow), throw(), noexcept(true), or noexcept was specified on the function
+c:\users\ignacioperezvelasco\source\repos\gameproject\scr\a05\a05base.cpp(73): warning C4297: 'SDL_main': function assumed not to throw an exception but does
+  c:\users\ignacioperezvelasco\source\repos\gameproject\scr\a05\a05base.cpp(73): note: __declspec(nothrow), throw(), noexcept(true), or noexcept was specified on the function
+c:\users\ignacioperezvelasco\source\repos\gameproject\scr\a05\a05base.cpp(76): warning C4297: 'SDL_main': function assumed not to throw an exception but does
+  c:\users\ignacioperezvelasco\source\repos\gameproject\scr\a05\a05base.cpp(76): note: __declspec(nothrow), throw(), noexcept(true), or noexcept was specified on the function
+c:\users\ignacioperezvelasco\source\repos\gameproject\scr\a05\a05base.cpp(79): warning C4297: 'SDL_main': function assumed not to throw an exception but does
+  c:\users\ignacioperezvelasco\source\repos\gameproject\scr\a05\a05base.cpp(79): note: __declspec(nothrow), throw(), noexcept(true), or noexcept was specified on the function
+  A05.vcxproj -> C:\Users\ignacioperezvelasco\source\repos\GameProject\\bin\Win32Debug\A05.exe
+  A05.vcxproj -> C:\Users\ignacioperezvelasco\source\repos\GameProject\\bin\Win32Debug\A05.pdb (Partial PDB)
+  0 File(s) copied

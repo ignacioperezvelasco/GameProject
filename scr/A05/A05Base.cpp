@@ -19,6 +19,7 @@ int main(int, char*[]) {
 	// --- WINDOW ---
 	SDL_Window *window{ SDL_CreateWindow("SDL...", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_SHOWN) };
 	if (window == nullptr) throw "No es pot inicialitzar SDL_Window";
+	
 	// ---TIME---
 	clock_t lastTime = clock();
 	float timeDown = 10;
@@ -27,9 +28,10 @@ int main(int, char*[]) {
 	// --- RENDERER ---
 	SDL_Renderer *renderer{ SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC) };
 	if (renderer == nullptr) throw "No es pot inicialitzar SDL_Renderer";
-
+	//
+	
 	// --- SPRITES ---
-	SDL_Texture *bgTexture{ IMG_LoadTexture(renderer,"../../res/img/bg.jpg") };//
+	SDL_Texture *bgTexture{ IMG_LoadTexture(renderer,"../../res/img/bgCastle.jpg") };//
 	if (bgTexture == nullptr)throw "no carrega text";//
 	SDL_Rect bgRect{ 0, 0, SCREEN_WIDTH, SCREEN_HEIGHT };//
 
@@ -41,12 +43,12 @@ int main(int, char*[]) {
 
 	// --- Animated Sprite ---
 	#define FPS 60
-	SDL_Texture *playerTexture{ IMG_LoadTexture(renderer,"../../res/img//sp01.png") };
+	SDL_Texture *playerTexture{ IMG_LoadTexture(renderer,"../../res/img/spCastle.png") };
 	SDL_Rect playerRect, playerPosition;
 	int textwidth, textheigh, framewidth, frameheigh;
 	SDL_QueryTexture(playerTexture, NULL, NULL, &textwidth, &textheigh);
-	framewidth = textwidth / 6;
-	frameheigh = textheigh / 1;
+	framewidth = textwidth / 12;
+	frameheigh = textheigh / 8;
 	playerPosition.x = playerPosition.y = 0;
 	playerRect.x = playerRect.y = 0;
 	playerPosition.h = playerRect.h = framewidth;
@@ -106,9 +108,14 @@ int main(int, char*[]) {
 		{
 			frameTime = 0;
 			playerRect.x += framewidth;
-			if (playerRect.x >= textwidth)
+			if (playerRect.x >= textwidth/4)
 			{
 				playerRect.x = 0;
+				playerRect.y += frameheigh;
+				if (playerRect.y >= textheigh / 2)
+				{
+					playerRect.y = 0;
+				}
 			}
 		}
 		/*deltaTime = (clock() - lastTime);
@@ -148,4 +155,3 @@ int main(int, char*[]) {
 	SDL_Quit();
 	return 0;
 }
-
