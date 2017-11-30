@@ -5,6 +5,7 @@ class PowerUp:public MapObject
 public:
 	enum type{Casc,Patins};
 
+	type tipo;
 	PowerUp();
 	~PowerUp();
 };

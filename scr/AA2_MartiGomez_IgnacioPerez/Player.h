@@ -6,12 +6,11 @@ class Player:public MapObject
 	
 	
 public:
-	Player();
+	Player(int numPlayer);
 	~Player();
 	//atributos
 	int identificador;
 	int vida;
-	int position[2];
 	int punts;
 	bool puedoPlantar;
 	Bomb *myBomb;
@@ -20,7 +19,10 @@ public:
 	bool casc;
 
 	//Metodos
-	void move(int input);
+	void moveup();
+	void movedown();
+	void moveright();
+	void moveleft();
 	void plantBomb();
 	void sumarPunts(int a);
 	void PowerUpPatins();

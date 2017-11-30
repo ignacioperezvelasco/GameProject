@@ -4,18 +4,40 @@
 #include <vector>
 
 
-Player::Player()
-{
-	vida = 3;
-	punts=0;
-	patins = false;
-	casc = false;
-	position[0]=0;
-	position[1] = 0;
+Player::Player(int numPlayer):
+	identificador(numPlayer),
+	vida(3),
+	punts(0),
+	patins(false),
+	casc(false),
+	myBomb(nullptr)
+{	
+	if (identificador == 1) {
+		position[0] = 0;
+		position[1] = 0;
+	}
+	else if (identificador == 2)
+	{
+		position[0] = 10;
+		position[1] = 10;
+	}
 }
 
-void Player::move(int input) 
+void Player::moveup() 
 {
+	position[1]++;
+}
+void Player::movedown() 
+{
+	position[1]--;
+}
+void Player::moveright() 
+{
+	position[0]++;
+}
+void Player::moveleft() 
+{
+	position[0]--;
 }
 
 void Player::plantBomb() 
@@ -41,9 +63,9 @@ void Player::PowerCasc()
 	patins = false;
 }
 
-void Player::MapObject::draw() 
+void MapObject::draw()
 {
-
+	
 }
 
 Player::~Player()

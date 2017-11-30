@@ -3,10 +3,10 @@ class MapObject
 {
 public:
 	int position[2];
-
+	//SDLRects 
 	//Sprite,size...
-	virtual void draw();
-	virtual void update();
+	void draw();
+	void update();
 	MapObject();
 	~MapObject();
 };

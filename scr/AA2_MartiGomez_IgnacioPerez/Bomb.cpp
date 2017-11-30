@@ -14,6 +14,7 @@ Bomb::Bomb(int positionPlayer[2])
 void Bomb::explotarBomba()
 {
 	//hacer countdown;
+	//avisarmapa
 	//Bomb::~Bomb();
 }
 

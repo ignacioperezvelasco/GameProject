@@ -11,6 +11,7 @@
 int main()
 {
 	Player player1;
+	player1.plantBomb();
 	
 }
 
