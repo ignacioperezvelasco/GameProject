@@ -153,6 +153,7 @@
     <ClInclude Include="Bomb.h" />
     <ClInclude Include="Constants.h" />
     <ClInclude Include="Escena.h" />
+    <ClInclude Include="Game.h" />
     <ClInclude Include="Level.h" />
     <ClInclude Include="MapObject.h" />
     <ClInclude Include="Menu.h" />
@@ -169,6 +170,7 @@
     <ClCompile Include="AA2MartiGomezIgnacioPerez.cpp" />
     <ClCompile Include="Bomb.cpp" />
     <ClCompile Include="Escena.cpp" />
+    <ClCompile Include="Game.cpp" />
     <ClCompile Include="Level.cpp" />
     <ClCompile Include="MapObject.cpp" />
     <ClCompile Include="Menu.cpp" />

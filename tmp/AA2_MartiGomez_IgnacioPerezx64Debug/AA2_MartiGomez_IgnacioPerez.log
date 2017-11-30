@@ -1,0 +1,19 @@
+﻿  stdafx.cpp
+  Renderer.cpp
+c:\users\ignacioperezvelasco\source\repos\gameproject\scr\aa2_martigomez_ignacioperez\renderer.cpp(84): fatal error C1010: unexpected end of file while looking for precompiled header. Did you forget to add '#include "stdafx.h"' to your source?
+  Ranking.cpp
+c:\users\ignacioperezvelasco\source\repos\gameproject\scr\aa2_martigomez_ignacioperez\ranking.cpp(6): error C2512: 'Escena': no appropriate default constructor available
+  c:\users\ignacioperezvelasco\source\repos\gameproject\scr\aa2_martigomez_ignacioperez\escena.h(8): note: see declaration of 'Escena'
+  PowerUp.cpp
+  Player.cpp
+  Obstaculos.cpp
+  Menu.cpp
+c:\users\ignacioperezvelasco\source\repos\gameproject\scr\aa2_martigomez_ignacioperez\menu.cpp(87): error C2059: syntax error: ')'
+  MapObject.cpp
+  Level.cpp
+c:\users\ignacioperezvelasco\source\repos\gameproject\scr\aa2_martigomez_ignacioperez\level.cpp(6): error C2512: 'Escena': no appropriate default constructor available
+  c:\users\ignacioperezvelasco\source\repos\gameproject\scr\aa2_martigomez_ignacioperez\escena.h(8): note: see declaration of 'Escena'
+  Escena.cpp
+  Bomb.cpp
+  AA2MartiGomezIgnacioPerez.cpp
+  Generating Code...

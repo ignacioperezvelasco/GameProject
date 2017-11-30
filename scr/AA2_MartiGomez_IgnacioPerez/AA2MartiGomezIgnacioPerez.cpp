@@ -10,8 +10,11 @@
 
 int main()
 {
-	Player player1;
-	player1.plantBomb();
+	/*Player player1;
+	player1.plantBomb();*/
+
+
+
 	
 }
 

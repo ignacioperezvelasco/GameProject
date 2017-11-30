@@ -1,5 +1,7 @@
 #pragma once
-#include <SDL_render.h>
+#include "Renderer.h"
+#include "Types.h"
+
 enum Estado {Playing, Level1, Level2, Ranking, Exit};
 
 class Escena
@@ -7,7 +9,7 @@ class Escena
 public:
 
 	//Contructor
-	Escena(int height, int width);
+	 Escena(int height, int width);
 
 	//Desctructor
 	~Escena();
@@ -22,6 +24,6 @@ public:
 
 	//Atributos
 	private:
-		SDL_Rect Background;
+		SDL_Rect Background;		
 };
 

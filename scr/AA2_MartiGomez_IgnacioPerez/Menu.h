@@ -5,10 +5,11 @@ class Menu:public Escena
 public:
 
 	//Atributos
-	int play1;
-	int play2;
-	int ranking;
-	int menu;
+	SDL_Rect Level1rect;
+	SDL_Rect Level2rect;
+	SDL_Rect Rankingrect;
+	SDL_Rect Exitrect;
+	SDL_Rect D_Sorect;
 
 	//Constructor
 	Menu();
@@ -17,7 +18,13 @@ public:
 	~Menu();
 
 	//Funciones
+	void cambioEscena();
 	void exit();
 	void d_volumen();
+
+	//Funciones heredades
+	void draw();
+	void update();
+	void eHandler();
 };
 
