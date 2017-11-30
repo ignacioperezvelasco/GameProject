@@ -41,6 +41,11 @@ void Player::PowerCasc()
 	patins = false;
 }
 
+void Player::MapObject::draw() 
+{
+
+}
+
 Player::~Player()
 {
 }

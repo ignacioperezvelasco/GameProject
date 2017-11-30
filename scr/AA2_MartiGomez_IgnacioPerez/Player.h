@@ -1,6 +1,7 @@
 #pragma once
+#include "MapObject.h"
 #include "Bomb.h"
-class Player
+class Player:public MapObject
 {
 	
 	
@@ -24,5 +25,6 @@ public:
 	void sumarPunts(int a);
 	void PowerUpPatins();
 	void PowerCasc();
+
 };
 
