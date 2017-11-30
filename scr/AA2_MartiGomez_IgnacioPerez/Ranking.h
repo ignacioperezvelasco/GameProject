@@ -3,7 +3,14 @@
 class Ranking:public Escena
 {
 public:
+	//Atributos
+	int Player[2];
+	int boto_tornar;
+
+	//Constructor
 	Ranking();
+
+	//Destructor
 	~Ranking();
 };
 
