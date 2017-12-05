@@ -5,9 +5,9 @@
 #include "Level.h"
 #include "Ranking.h"
 
-Game::Game():EscenaViviente(escenagame::Menu), escena(nullptr)
+Game::Game():EscenaViviente(escenaa::escenagame::MenuEscena), escena(nullptr)
 {
-	//escena = new Menu();
+	escena = new Menu();
 }
 
 Game::~Game()

@@ -2,12 +2,12 @@
 #include "Renderer.h"
 #include "Types.h"
 
-enum Estado {Playing, Level1, Level2, Ranking, Exit};
+enum Estado {Playing, Level1, Level2, RankingEscena, Exit};
 
 class Escena
 {
 public:
-
+	Escena();
 	//Contructor
 	 Escena(int height, int width);
 
@@ -18,9 +18,9 @@ public:
 	Estado estadoactual;
 
 	//Funciones
-	virtual void draw();
-	virtual void update();
-	virtual void eHandler();
+	virtual void draw()=0;
+	virtual void update()=0;
+	virtual void eHandler()=0;
 
 	//Atributos
 	private:

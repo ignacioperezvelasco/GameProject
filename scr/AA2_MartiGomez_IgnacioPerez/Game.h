@@ -1,7 +1,8 @@
 #pragma once
 #include "Escena.h"
-
-enum escenagame { Menu, Play, Ranking, Exit };
+namespace escenaa {
+	enum escenagame { MenuEscena, Play, RankingEscena, ExitEscena };
+}
 class Game
 {
 public:
@@ -17,7 +18,7 @@ public:
 
 private:
 	//Atributos privados
-	escenagame EscenaViviente;
+	escenaa::escenagame EscenaViviente;
 	Escena *escena;
 
 };

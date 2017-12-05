@@ -9,6 +9,9 @@ public:
 
 	//Constructor
 	Ranking();
+	void draw();
+	void update();
+	void eHandler();
 
 	//Destructor
 	~Ranking();

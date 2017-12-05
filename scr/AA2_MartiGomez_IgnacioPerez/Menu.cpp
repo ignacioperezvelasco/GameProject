@@ -3,6 +3,7 @@
 
 Menu::Menu() :Escena::Escena(720, 704)
 {
+	
 	//Estructura de fuente (Types.h)
 	Font f;
 	f.id = SAIYAN_80;
@@ -17,6 +18,7 @@ Menu::Menu() :Escena::Escena(720, 704)
 
 	//Play1
 	Text play1;
+	
 	play1.id = MENU_TEXT_BUTTON_PLAY;
 	play1.text = "Play Level 1";
 	play1.color = Color{ 0,0,0,0 };
@@ -84,7 +86,7 @@ void Menu::draw()
 	Renderer::Instance()->PushImage(MENU_TEXT_BUTTON_PLAY, Level1rect);
 	Renderer::Instance()->PushImage(MENU_TEXT_BUTTON_PLAY2, Level2rect);
 	Renderer::Instance()->PushImage(MENU_TEXT_BUTTON_RANKING, Rankingrect);
-	Renderer::Instance()->PushImage(MENU_TEXT_BUTTON_MUTE, D_Sorect););
+	Renderer::Instance()->PushImage(MENU_TEXT_BUTTON_MUTE, D_Sorect);
 	Renderer::Instance()->PushImage(MENU_TEXT_BUTTON_EXIT, Exitrect);
 	Renderer::Instance()->Render();
 }
@@ -95,13 +97,13 @@ void Menu::update()
 
 void Menu::eHandler()
 {
-	SDL_Event e;
+	//SDL_Event e;
 
-	switch (e.type)
+	/*switch (e.type)
 	{
 		case SDL_MOUSEBUTTONDOWN:
 			//SEGUN DONDE PULSEMOS (X e Y) realizamos alguna acción
-			/*if ()
+			if ()
 			{
 
 			}
@@ -120,10 +122,10 @@ void Menu::eHandler()
 			else if ()
 			{
 
-			}*/
+			}
 
 		break;
 		default:
 		break;
-	}
+	}*/
 }
