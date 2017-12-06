@@ -8,17 +8,14 @@
 #include "Player.h"
 #include "Menu.h"
 #include "Ranking.h"
+#include "Game.h"
 
 
 int main(int, char*[])
 {
-	
-	/*Player player1;
-	player1.plantBomb();*/
-	Menu probando;
-	probando.draw();
-	int a;
-	a = 3;
+	Game game1;
+	game1.update();
+		
 	return 0;
 }
 

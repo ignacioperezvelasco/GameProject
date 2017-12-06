@@ -3,23 +3,17 @@
 #include <iostream>
 
 Escena::Escena() {}
-Escena::Escena(int height, int width) : estadoactual(Estado::Playing), Background({ 0,0,0,0 })
+Escena::Escena(int, int): estadoactual(escenaEscena::Estado::Playing), Background({ 0,0,0,0 })
 {
-	//Renderer::Instance()->LoadTexture(BG, "PATH");
-	Background = SDL_Rect{ 0, 0, width, height };
+	Renderer::Instance()->LoadTexture(MENU_BG, PATH_IMG + "bgGame.jpg");
+	Background = SDL_Rect{ 0, 0, SCREEN_WIDTH, SCREEN_HEIGHT };
 }
 
-/*void Escena::draw() 
-{
-	
-		std::cout << "ESCENA" << std::endl;
-	
-}
-
-void Escena::update() {}
-
-void Escena::eHandler() {}
-*/
 Escena::~Escena()
 {
+}
+
+void Escena::draw()
+{
+	Renderer::Instance()->PushImage(MENU_BG, Background);
 }

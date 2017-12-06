@@ -1,24 +1,27 @@
 #pragma once
+#include "stdafx.h"
 #include "Renderer.h"
 #include "Types.h"
 
-enum Estado {Playing, Level1, Level2, RankingEscena, Exit};
+namespace escenaEscena {
+	enum Estado { Playing, Level1, Level2, RankingEscena, Exit };
+}
 
 class Escena
 {
 public:
 	Escena();
 	//Contructor
-	 Escena(int height, int width);
+	Escena(int, int);
 
 	//Desctructor
 	~Escena();
 
 	//Atributos
-	Estado estadoactual;
+	escenaEscena::Estado estadoactual;
 
 	//Funciones
-	virtual void draw()=0;
+	virtual void draw();
 	virtual void update()=0;
 	virtual void eHandler()=0;
 
