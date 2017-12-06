@@ -8,6 +8,10 @@ public:
 	Level();
 	Level(int num);
 
+	void draw();
+	void update();
+	void eHandler();
+
 	//Destructores
 	~Level();
 };

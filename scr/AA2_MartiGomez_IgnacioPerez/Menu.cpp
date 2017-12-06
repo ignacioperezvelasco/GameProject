@@ -77,6 +77,7 @@ Menu::Menu() :Escena::Escena(SCREEN_WIDTH, SCREEN_HEIGHT)
 	Rankingrect = SDL_Rect{ 400 - (ranking.w / 2), 300 - (ranking.h / 2), ranking.w, ranking.h };
 	D_Sorect = SDL_Rect{ 400 - (sonido.w / 2), 400 - (sonido.h / 2), sonido.w, sonido.h };
 	Exitrect = SDL_Rect{ 400 - (exit.w/2), 500 - (exit.h/2), exit.w, exit.h };
+	eHandler();
 }
 
 Menu::~Menu()
@@ -130,10 +131,13 @@ void Menu::eHandler()
 			{
 				estadoactual = escenaEscena::Estado::Exit;
 			}
+		case SDL_QUIT:
+			estadoactual = escenaEscena::Estado::Exit;
 
 			break;
 		default:
 			break;
 		}
+	
 	}
 }

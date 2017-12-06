@@ -1,12 +1,20 @@
 #pragma once
 #include "MapObject.h"
+#include "Renderer.h"
 #include "Bomb.h"
 class Player:public MapObject
 {
-	
-	
+private:
+	SDL_Texture * playerTexture;
+	SDL_Rect playerRect, playerPosition;
+	int textwidth, textheigh, framewidth, frameheigh;
+	Renderer myRenderer;
+	std::string id;
 public:
-	Player(int numPlayer);
+	
+
+
+	Player(int numPlayer,Renderer Rend);
 	~Player();
 	//atributos
 	int identificador;
@@ -27,6 +35,9 @@ public:
 	void sumarPunts(int a);
 	void PowerUpPatins();
 	void PowerCasc();
+
+	void draw();
+	void update();
 
 };
 
