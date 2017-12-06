@@ -20,9 +20,12 @@ public:
 	//Funciones
 	void update();
 
+	//Atributos publicos
+	escenaa::escenagame EscenaViviente;
+
 private:
 	//Atributos privados
-	escenaa::escenagame EscenaViviente;
+	//escenaa::escenagame EscenaViviente;
 	Escena *escena;
 
 };

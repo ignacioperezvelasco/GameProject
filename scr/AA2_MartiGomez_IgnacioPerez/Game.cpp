@@ -3,7 +3,8 @@
 #include "Game.h"
 
 
-Game::Game():EscenaViviente(escenaa::escenagame::MenuEscena), escena(nullptr)
+Game::Game():
+	EscenaViviente(escenaa::escenagame::MenuEscena)
 {
 	escena = new Menu();
 }

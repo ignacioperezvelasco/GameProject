@@ -1,9 +1,14 @@
 #include "stdafx.h"
 #include "Menu.h"
 
-Menu::Menu() :Escena::Escena(SCREEN_WIDTH, SCREEN_HEIGHT)
+Menu::Menu() :
+	Escena::Escena(SCREEN_WIDTH, SCREEN_HEIGHT), 
+	isrunning(true)
 {
-	
+	//Fondo
+	Renderer::Instance()->LoadTexture(MENU_BG, PATH_IMG + "bgGame.jpg");
+	Background = SDL_Rect{ 0, 0, SCREEN_WIDTH, SCREEN_HEIGHT };
+
 	//Estructura de fuente (Types.h)
 	Font f;
 	f.id = SAIYAN_80;
@@ -76,8 +81,7 @@ Menu::Menu() :Escena::Escena(SCREEN_WIDTH, SCREEN_HEIGHT)
 	Level2rect = SDL_Rect{ 400 - (play2.w / 2), 200 - (play2.h / 2), play2.w, play2.h };
 	Rankingrect = SDL_Rect{ 400 - (ranking.w / 2), 300 - (ranking.h / 2), ranking.w, ranking.h };
 	D_Sorect = SDL_Rect{ 400 - (sonido.w / 2), 400 - (sonido.h / 2), sonido.w, sonido.h };
-	Exitrect = SDL_Rect{ 400 - (exit.w/2), 500 - (exit.h/2), exit.w, exit.h };
-	eHandler();
+	Exitrect = SDL_Rect{ 400 - (exit.w/2), 500 - (exit.h/2), exit.w, exit.h }; 
 }
 
 Menu::~Menu()
@@ -88,6 +92,7 @@ void Menu::draw()
 {
 	Renderer::Instance()->Clear();
 	//Dibujar los SDL_RECTS
+	Renderer::Instance()->PushImage(MENU_BG, Background);
 	Renderer::Instance()->PushImage(MENU_TEXT_BUTTON_PLAY, Level1rect);
 	Renderer::Instance()->PushImage(MENU_TEXT_BUTTON_PLAY2, Level2rect);
 	Renderer::Instance()->PushImage(MENU_TEXT_BUTTON_RANKING, Rankingrect);
@@ -103,41 +108,53 @@ void Menu::update()
 void Menu::eHandler()
 {
 	SDL_Event e;
-	while (SDL_PollEvent(&e))
+	while (isrunning)
 	{
-		switch (e.type)
+		while (SDL_PollEvent(&e))
 		{
-		case SDL_MOUSEBUTTONDOWN:
-			//SEGUN DONDE PULSEMOS (X e Y) realizamos alguna acción <>
-			int positionMouseX, positionMouseY;
-			SDL_GetMouseState(&positionMouseX, &positionMouseY);
-			if ((positionMouseX < Level1rect.x + Level1rect.w) && (positionMouseX > Level1rect.x) && ((positionMouseY < Level1rect.h + Level1rect.y) && (positionMouseY > Level1rect.y)))
+			switch (e.type)
 			{
-				estadoactual = escenaEscena::Estado::Level1;
-			}
-			else if ((positionMouseX < Level2rect.x + Level2rect.w) && (positionMouseX > Level2rect.x) && ((positionMouseY < Level2rect.h + Level2rect.y) && (positionMouseY > Level2rect.y)))
-			{
-				estadoactual = escenaEscena::Estado::Level2;
-			}
-			else if ((positionMouseX < Rankingrect.x + Rankingrect.w) && (positionMouseX > Rankingrect.x) && ((positionMouseY < Rankingrect.h + Rankingrect.y) && (positionMouseY > Rankingrect.y)))
-			{
-				estadoactual = escenaEscena::Estado::RankingEscena;
-			}
-			else if ((positionMouseX < D_Sorect.x + D_Sorect.w) && (positionMouseX > D_Sorect.x) && ((positionMouseY < D_Sorect.h + D_Sorect.y) && (positionMouseY > D_Sorect.y)))
-			{
-				estadoactual = escenaEscena::Estado::Mute;
-			}
-			else if ((positionMouseX < Exitrect.x + Exitrect.w) && (positionMouseX > Exitrect.x) && ((positionMouseY < Exitrect.h + Exitrect.y) && (positionMouseY > Exitrect.y)))
-			{
-				estadoactual = escenaEscena::Estado::Exit;
-			}
-		case SDL_QUIT:
-			estadoactual = escenaEscena::Estado::Exit;
+			case SDL_MOUSEBUTTONDOWN:
+				//SEGUN DONDE PULSEMOS (X e Y) realizamos alguna acción <>
+				int positionMouseX, positionMouseY;
+				SDL_GetMouseState(&positionMouseX, &positionMouseY);
 
-			break;
-		default:
-			break;
+				if ((positionMouseX < Level1rect.x + Level1rect.w) && (positionMouseX > Level1rect.x) && ((positionMouseY < Level1rect.h + Level1rect.y) && (positionMouseY > Level1rect.y)))
+				{
+					std::cout << "HOLA Level1" << std::endl;
+					estadoactual = escenaEscena::Estado::Level1;
+					isrunning = false;
+				}
+				else if ((positionMouseX < Level2rect.x + Level2rect.w) && (positionMouseX > Level2rect.x) && ((positionMouseY < Level2rect.h + Level2rect.y) && (positionMouseY > Level2rect.y)))
+				{
+					std::cout << "HOLA Level2" << std::endl;
+					estadoactual = escenaEscena::Estado::Level2;
+					isrunning = false;
+				}
+				else if ((positionMouseX < Rankingrect.x + Rankingrect.w) && (positionMouseX > Rankingrect.x) && ((positionMouseY < Rankingrect.h + Rankingrect.y) && (positionMouseY > Rankingrect.y)))
+				{
+					std::cout << "HOLA Ranking" << std::endl;
+					estadoactual = escenaEscena::Estado::RankingEscena;
+					isrunning = false;
+				}
+				else if ((positionMouseX < D_Sorect.x + D_Sorect.w) && (positionMouseX > D_Sorect.x) && ((positionMouseY < D_Sorect.h + D_Sorect.y) && (positionMouseY > D_Sorect.y)))
+				{
+					std::cout << "HOLA Sonido" << std::endl;
+					estadoactual = escenaEscena::Estado::Mute;
+					isrunning = false;
+				}
+				else if ((positionMouseX < Exitrect.x + Exitrect.w) && (positionMouseX > Exitrect.x) && ((positionMouseY < Exitrect.h + Exitrect.y) && (positionMouseY > Exitrect.y)))
+				{
+					std::cout << "HOLA Exit" << std::endl;
+					estadoactual = escenaEscena::Estado::Exit;
+					isrunning = false;
+				}
+			case SDL_QUIT:
+				estadoactual = escenaEscena::Estado::Exit;
+
+				break;
+			}
+
 		}
-	
 	}
 }

@@ -4,7 +4,7 @@
 #include "Types.h"
 
 namespace escenaEscena {
-	enum Estado { Playing, Level1, Level2, RankingEscena, Exit, Mute };
+	enum Estado { Playing, Level1, Level2, RankingEscena, Exit, Mute, Menu };
 }
 
 class Escena
@@ -21,7 +21,7 @@ public:
 	escenaEscena::Estado estadoactual;
 
 	//Funciones
-	virtual void draw();
+	virtual void draw()=0;
 	virtual void update()=0;
 	virtual void eHandler()=0;
 

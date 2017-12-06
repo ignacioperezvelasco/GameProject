@@ -1,5 +1,6 @@
 #pragma once
 #include "Escena.h"
+#include <iostream>
 class Menu:public Escena
 {
 public:
@@ -10,6 +11,10 @@ public:
 	SDL_Rect Rankingrect;
 	SDL_Rect Exitrect;
 	SDL_Rect D_Sorect;
+	SDL_Rect Background;
+
+	//Atributos publicos
+	bool isrunning;
 
 	//Constructor
 	Menu();

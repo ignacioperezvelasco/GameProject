@@ -12,6 +12,9 @@ public:
 	void update();
 	void eHandler();
 
+	//Atributos
+	SDL_Rect Background;
+
 	//Destructores
 	~Level();
 };

@@ -14,8 +14,8 @@ Player::Player(int numPlayer,Renderer rend):
 	myRenderer(rend)
 {	
 	if (identificador == 1) {
-		playerPosition.x = 0;//Se ha de cambiar segun xml
-		playerPosition.y = 0;//Se ha de cambiar segun xml
+		playerPosition.x = 0;	//Se ha de cambiar segun xml
+		playerPosition.y = 0;	//Se ha de cambiar segun xml
 		id = "player1";
 		Renderer::Instance()->LoadTexture(id, "../../res/ing/player1.png");
 		SDL_QueryTexture(playerTexture, NULL, NULL, &textwidth, &textheigh);
@@ -23,8 +23,8 @@ Player::Player(int numPlayer,Renderer rend):
 	}
 	else if (identificador == 2)
 	{
-		playerPosition.x = 0;//Se ha de cambiar segun xml
-		playerPosition.y = 0;//Se ha de cambiar segun xml
+		playerPosition.x = 0;	//Se ha de cambiar segun xml
+		playerPosition.y = 0;	//Se ha de cambiar segun xml
 		id = "player2";
 		Renderer::Instance()->LoadTexture(id, "../../res/ing/player2.png");
 		SDL_QueryTexture(playerTexture, NULL, NULL, &textwidth, &textheigh);
