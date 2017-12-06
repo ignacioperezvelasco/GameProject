@@ -4,7 +4,7 @@
 #include "Types.h"
 
 namespace escenaEscena {
-	enum Estado { Playing, Level1, Level2, RankingEscena, Exit };
+	enum Estado { Playing, Level1, Level2, RankingEscena, Exit, Mute };
 }
 
 class Escena

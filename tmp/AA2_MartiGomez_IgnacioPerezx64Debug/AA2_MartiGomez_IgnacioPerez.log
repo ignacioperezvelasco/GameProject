@@ -1,3 +1,15 @@
-﻿  Game.cpp
-  AA2_MartiGomez_IgnacioPerez.vcxproj -> C:\Users\Marti\Desktop\IgnacioMarti\\bin\x64Debug\AA2_MartiGomez_IgnacioPerez.exe
-  0 archivo(s) copiado(s)
+﻿  Level.cpp
+  Game.cpp
+c:\users\marti\desktop\ignaciomarti\scr\aa2_martigomez_ignacioperez\game.cpp(27): error C2259: 'Level': no se puede crear una instancia de una clase abstract
+  c:\users\marti\desktop\ignaciomarti\scr\aa2_martigomez_ignacioperez\game.cpp(27): note: debido a los siguientes miembros:
+  c:\users\marti\desktop\ignaciomarti\scr\aa2_martigomez_ignacioperez\game.cpp(27): note: 'void Escena::update(void)': es abstracto
+  c:\users\marti\desktop\ignaciomarti\scr\aa2_martigomez_ignacioperez\escena.h(25): note: vea la declaración de 'Escena::update'
+  c:\users\marti\desktop\ignaciomarti\scr\aa2_martigomez_ignacioperez\game.cpp(27): note: 'void Escena::eHandler(void)': es abstracto
+  c:\users\marti\desktop\ignaciomarti\scr\aa2_martigomez_ignacioperez\escena.h(26): note: vea la declaración de 'Escena::eHandler'
+c:\users\marti\desktop\ignaciomarti\scr\aa2_martigomez_ignacioperez\game.cpp(33): error C2259: 'Level': no se puede crear una instancia de una clase abstract
+  c:\users\marti\desktop\ignaciomarti\scr\aa2_martigomez_ignacioperez\game.cpp(33): note: debido a los siguientes miembros:
+  c:\users\marti\desktop\ignaciomarti\scr\aa2_martigomez_ignacioperez\game.cpp(33): note: 'void Escena::update(void)': es abstracto
+  c:\users\marti\desktop\ignaciomarti\scr\aa2_martigomez_ignacioperez\escena.h(25): note: vea la declaración de 'Escena::update'
+  c:\users\marti\desktop\ignaciomarti\scr\aa2_martigomez_ignacioperez\game.cpp(33): note: 'void Escena::eHandler(void)': es abstracto
+  c:\users\marti\desktop\ignaciomarti\scr\aa2_martigomez_ignacioperez\escena.h(26): note: vea la declaración de 'Escena::eHandler'
+  Generando código...

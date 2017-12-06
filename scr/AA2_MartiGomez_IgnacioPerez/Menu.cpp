@@ -102,34 +102,38 @@ void Menu::update()
 void Menu::eHandler()
 {
 	SDL_Event e;
-
-	/*switch (e.type)
+	while (SDL_PollEvent(&e))
 	{
+		switch (e.type)
+		{
 		case SDL_MOUSEBUTTONDOWN:
-			//SEGUN DONDE PULSEMOS (X e Y) realizamos alguna acción
-			if ()
+			//SEGUN DONDE PULSEMOS (X e Y) realizamos alguna acción <>
+			int positionMouseX, positionMouseY;
+			SDL_GetMouseState(&positionMouseX, &positionMouseY);
+			if ((positionMouseX < Level1rect.x + Level1rect.w) && (positionMouseX > Level1rect.x) && ((positionMouseY < Level1rect.h + Level1rect.y) && (positionMouseY > Level1rect.y)))
 			{
-
+				estadoactual = escenaEscena::Estado::Level1;
 			}
-			else if ()
+			else if ((positionMouseX < Level2rect.x + Level2rect.w) && (positionMouseX > Level2rect.x) && ((positionMouseY < Level2rect.h + Level2rect.y) && (positionMouseY > Level2rect.y)))
 			{
-
+				estadoactual = escenaEscena::Estado::Level2;
 			}
-			else if ()
+			else if ((positionMouseX < Rankingrect.x + Rankingrect.w) && (positionMouseX > Rankingrect.x) && ((positionMouseY < Rankingrect.h + Rankingrect.y) && (positionMouseY > Rankingrect.y)))
 			{
-
+				estadoactual = escenaEscena::Estado::RankingEscena;
 			}
-			else if ()
+			else if ((positionMouseX < D_Sorect.x + D_Sorect.w) && (positionMouseX > D_Sorect.x) && ((positionMouseY < D_Sorect.h + D_Sorect.y) && (positionMouseY > D_Sorect.y)))
 			{
-
+				estadoactual = escenaEscena::Estado::Mute;
 			}
-			else if ()
+			else if ((positionMouseX < Exitrect.x + Exitrect.w) && (positionMouseX > Exitrect.x) && ((positionMouseY < Exitrect.h + Exitrect.y) && (positionMouseY > Exitrect.y)))
 			{
-
+				estadoactual = escenaEscena::Estado::Exit;
 			}
 
-		break;
+			break;
 		default:
-		break;
-	}*/
+			break;
+		}
+	}
 }

@@ -1,5 +1,9 @@
 #pragma once
 #include "Escena.h"
+#include "Menu.h"
+#include "Level.h"
+#include "Ranking.h"
+
 namespace escenaa {
 	enum escenagame { MenuEscena, Play, RankingEscena, ExitEscena };
 }
