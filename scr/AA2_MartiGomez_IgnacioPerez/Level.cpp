@@ -10,8 +10,11 @@ Level::Level(int num):Escena::Escena(SCREEN_WIDTH, SCREEN_HEIGHT)
 {
 	//Pusheamos todos los objetos
 	//Background
-	Renderer::Instance()->LoadTexture(MENU_BG, PATH_IMG + "bgGame.jpg");
 	Background = SDL_Rect{ 0, 0, SCREEN_WIDTH, SCREEN_HEIGHT };
+
+
+	//Declaramos textura
+	Renderer::Instance()->LoadTexture(ITEMS, PATH_IMG + "kintoun.png");
 
 	//MAPA SEGUN EL NUMERO QUE RECIBAMOS
 	std::string nameFichero;
@@ -84,16 +87,19 @@ void Level::draw()
 	Renderer::Instance()->Clear();
 	Renderer::Instance()->PushImage(MENU_BG, Background);
 	//Se han de cargar en el renderer los obstaculos
-	for (int i = 0; i < columnas; i++)
+	/*for (int i = 0; i < columnas; i++)
 	{
 		for (int j = 0; j < filas; j++)
 		{
 			mapaObstaculos[i][j]->draw();
 		}
 		std::cout<<std::endl;
-	}
+	}*/
+	
+	Renderer::Instance()->PushSprite(ITEMS, SDL_Rect{ 0, 0, 48, 48 }, SDL_Rect{ 48, 48, 48, 48});
 	Renderer::Instance()->Render();
 }
+
 void Level::update()
 {}
 void Level::eHandler() 
