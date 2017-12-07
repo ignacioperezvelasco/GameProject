@@ -18,7 +18,8 @@ const std::string MENU_TEXT_BUTTON_EXIT = "MENU_TEXT_BUTTON_EXIT";
 const std::string MENU_TEXT_BUTTON_PLAY2 = "MENU_TEXT_BUTTON_PLAY2";
 const std::string MENU_TEXT_BUTTON_RANKING = "MENU_TEXT_RANKING";
 const std::string MENU_TEXT_BUTTON_MUTE = "MENU_TEXT_MUTE";
-const std::string PLAY1;
+const std::string ITEMS = "ITEMS";
+//const std::string PATH_XML = "../../dep/inc/XML/";
 
 /////////////////////////////////////////////////
 
