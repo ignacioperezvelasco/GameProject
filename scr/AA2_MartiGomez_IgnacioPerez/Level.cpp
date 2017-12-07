@@ -61,17 +61,17 @@ Level::Level(int num):Escena::Escena(SCREEN_WIDTH, SCREEN_HEIGHT)
 			{
 				//Comprobamos si lee bien
 				//mapa[i][j] = new Obstaculos(1);
-				mapa[i][j] = 1;
+				mapaObstaculos[i][j] = new Obstaculos(tipoObj::tipo::DEST,i,j);
 			}
 			else if (s == "vacio")
 			{
 				//Comprobamos si lee bien
-				mapa[i][j] = 2;
+				mapaObstaculos[i][j] = new Obstaculos(tipoObj::tipo::NONE, i, j);
 			}
 			else if (s == "dest")
 			{
 				//Comprobamos si lee bien
-				mapa[i][j] = 8;
+				mapaObstaculos[i][j] = new Obstaculos(tipoObj::tipo::NODEST, i, j);
 			}
 		}
 	}
@@ -83,6 +83,15 @@ void Level::draw()
 {
 	Renderer::Instance()->Clear();
 	Renderer::Instance()->PushImage(MENU_BG, Background);
+	//Se han de cargar en el renderer los obstaculos
+	for (int i = 0; i < columnas; i++)
+	{
+		for (int j = 0; j < filas; j++)
+		{
+			mapaObstaculos[i][j]->draw();
+		}
+		std::cout<<std::endl;
+	}
 	Renderer::Instance()->Render();
 }
 void Level::update()

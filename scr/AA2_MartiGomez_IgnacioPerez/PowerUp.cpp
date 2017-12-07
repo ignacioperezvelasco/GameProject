@@ -7,6 +7,9 @@ PowerUp::PowerUp()
 
 }
 
+void PowerUp::draw() {}
+
+void PowerUp::update() {}
 
 PowerUp::~PowerUp()
 {

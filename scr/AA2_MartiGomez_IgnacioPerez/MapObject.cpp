@@ -6,6 +6,9 @@ MapObject::MapObject()
 {
 }
 
+void MapObject::draw() {}
+
+void MapObject::update() {}
 
 MapObject::~MapObject()
 {

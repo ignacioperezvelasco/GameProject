@@ -8,5 +8,8 @@ public:
 	type tipo;
 	PowerUp();
 	~PowerUp();
+
+	void draw();
+	void update();
 };
 

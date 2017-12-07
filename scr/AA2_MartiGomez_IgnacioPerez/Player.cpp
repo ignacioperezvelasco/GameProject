@@ -37,22 +37,22 @@ Player::Player(int numPlayer,Renderer rend):
 
 void Player::moveup() 
 {
-	position[1]++;
+	playerPosition.y++;
 }
 
 void Player::movedown() 
 {
-	position[1]--;
+	playerPosition.y--;
 }
 
 void Player::moveright() 
 {
-	position[0]++;
+	playerPosition.x++;
 }
 
 void Player::moveleft() 
 {
-	position[0]--;
+	playerPosition.x--;
 }
 
 void Player::plantBomb() 
@@ -84,6 +84,8 @@ void Player::draw()
 		Renderer::Instance()->PushSprite(id, playerRect, playerPosition);
 
 }
+
+void Player::update() {}
 
 Player::~Player()
 {
