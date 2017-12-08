@@ -59,9 +59,9 @@ void Player::moveleft()
 	sprite.x-= 6;
 }
 
-void Player::plantBomb() 
+void Player::plantBomb(int PlayerX, int PlayerY) 
 {
-	myBomb= new Bomb(position);
+	myBomb= new Bomb(PlayerX, PlayerY);
 	puedoPlantar = false;
 }
 

@@ -1,14 +1,15 @@
 #include "stdafx.h"
 #include "Bomb.h"
-#include "Player.h"
 
 
-Bomb::Bomb(int positionPlayer[2])
+Bomb::Bomb(int positionPlayerX, int positionPlayerY)
 {
-	position[0] = positionPlayer[0];
-	position[1] = positionPlayer[1];
-	tiempo = 5;
-	explotarBomba();
+	sprite.x = (positionPlayerX * SPRITEWIDTH);
+	sprite.y = (positionPlayerY * SPRITEHEIGHT) + (SPRITEZ);
+	sprite.w = rect.w = SPRITEWIDTH;
+	sprite.h = rect.h = SPRITEHEIGHT;
+	rect.x = SPRITEWIDTH;
+	rect.y = 0;
 }
 
 void Bomb::explotarBomba()
@@ -16,6 +17,15 @@ void Bomb::explotarBomba()
 	//hacer countdown;
 	//avisarmapa
 	//Bomb::~Bomb();
+}
+
+void Bomb::draw()
+{
+	Renderer::Instance()->PushSprite(ITEMS, rect, sprite);
+}
+
+void Bomb::update()
+{
 }
 
 Bomb::~Bomb()

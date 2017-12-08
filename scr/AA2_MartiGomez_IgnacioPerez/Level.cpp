@@ -57,19 +57,12 @@ Level::Level(int num):Escena::Escena(SCREEN_WIDTH, SCREEN_HEIGHT)
 	tiempo = std::stof(Map->first_attribute("tiempo")->value(), nullptr);
 
 	//CONVERSION DEL TIEMPO A MINUTOS
-	/*deltaTime = 0;
-	timeDown = 10;*/
 	lastTime = clock();
 
-	/*
-	min = tiempo / 60;
-	secs = tiempo % 60;
-	*/
 	clock_t lastTime = clock();
 	float timeDown = 80;
 	float deltaTime = 0;	
 	
-
 	//JUGADORES
 	firstPlayer = Player(1,firstPlayer.playerX,firstPlayer.playerY,firstPlayer.vida);
 	secondPlayer = Player(2,secondPlayer.playerX,secondPlayer.playerY,secondPlayer.vida);
@@ -256,9 +249,6 @@ void Level::eHandler()
 		switch (event.type) {
 			/* Look for a keypress */
 		case SDL_KEYDOWN:
-
-		
-
 			/* Check the SDLKey values and move change the coords */
 			switch (event.key.keysym.sym) {
 				
@@ -354,12 +344,15 @@ void Level::eHandler()
 						firstPlayer.movedown();
 					}
 				}
-
-
-
 				firstPlayer.movedown();
 				break;
-		
+			case SDLK_RCTRL:
+
+				//Creacion de bomba
+				firstPlayer.plantBomb(firstPlayer.sprite.x, firstPlayer.sprite.y);
+
+
+				break;
 			}
 		}
 	}

@@ -37,7 +37,7 @@ public:
 	void movedown();
 	void moveright();
 	void moveleft();
-	void plantBomb();
+	void plantBomb(int playerX, int playerY);
 	void sumarPunts(int a);
 	void PowerUpPatins();
 	void PowerCasc();

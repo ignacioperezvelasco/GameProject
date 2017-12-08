@@ -2,6 +2,7 @@
 #include "Escena.h"
 #include "Obstaculos.h"
 #include "Player.h"
+#include "Bomb.h"
 #include <iostream>
 #include <string> 
 #include <time.h>
@@ -54,7 +55,6 @@ public:
 	//Jugadores
 	Player firstPlayer;
 	Player secondPlayer;
-
 
 	//Array de ints para comprobar
 	int mapa[15][13];

@@ -11,11 +11,7 @@
 class Obstaculos :public MapObject
 {
 private:
-
-	
 	bool isDestruct;
-
-
 public:
 	Obstaculos();
 	tipoObj::tipo type;
