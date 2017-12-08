@@ -4,6 +4,7 @@
 #include "Player.h"
 #include <iostream>
 #include <string> 
+#include <time.h>
 
 //RAPIDXML
 #include "../../dep/inc/XML/rapidxml.hpp"
@@ -29,6 +30,21 @@ public:
 	int filas; 
 	int columnas;
 	int tiempo;
+
+	//CONVERSION DEL TIEMPO y SU DISMINUCION
+	int min;
+	int secs;
+	float deltaTime;
+	float timeDown;
+	clock_t lastTime;
+	clock_t this_time;
+
+	//HUD
+	SDL_Rect score1;
+	SDL_Rect score2;
+	SDL_Rect timeRect;
+	SDL_Rect vida1;
+	SDL_Rect vida2;
 
 	//ARRAY MAPA
 	Obstaculos *mapaObstaculos[15][13];

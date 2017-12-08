@@ -11,6 +11,9 @@
 #define SPRITEHEIGHT 48
 #define SPRITEZ 80
 
+//HUD
+#define CELL_BORDER 20
+
 //////////////////////////////////////////
 
 const std::string MENU_BG = "MENU_BG";
@@ -29,6 +32,11 @@ const std::string MENU_TEXT_BUTTON_MUTE = "MENU_TEXT_MUTE";
 const std::string ITEMS = "ITEMS";
 const std::string PLAYER1 = "PLAYER1";
 const std::string PLAYER2 = "PLAYER2";
+const std::string SCORE_PLAYER1 = "SCORE_PLAYER1";
+const std::string SCORE_PLAYER2 = "SCORE_PLAYER2";
+const std::string LIFES_PLAYER1 = "LIFES_PLAYER1";
+const std::string LIFES_PLAYER2 = "LIFES_PLAYER2";
+const std::string TIME = "TIME_PLAYER";
 
 /////////////////////////////////////////////////
 

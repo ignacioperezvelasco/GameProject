@@ -78,11 +78,11 @@ Menu::Menu() :
 	exit.h = exitSize.y;
 
 	//SDL_RECT (Todas las opciones (Play1, Play2...)) (FALTAN LAS POSICIONES EN PANTALLA)
-	Level1rect = SDL_Rect{ 400 - (play1.w / 2), 100 - (play1.h / 2), play1.w, play1.h };
-	Level2rect = SDL_Rect{ 400 - (play2.w / 2), 200 - (play2.h / 2), play2.w, play2.h };
-	Rankingrect = SDL_Rect{ 400 - (ranking.w / 2), 300 - (ranking.h / 2), ranking.w, ranking.h };
-	D_Sorect = SDL_Rect{ 400 - (sonido.w / 2), 400 - (sonido.h / 2), sonido.w, sonido.h };
-	Exitrect = SDL_Rect{ 400 - (exit.w/2), 500 - (exit.h/2), exit.w, exit.h }; 
+	Level1rect = SDL_Rect{ (SCREEN_WIDTH/2) - (play1.w / 2), ((SCREEN_WIDTH / 6)*1) - (play1.h / 2), play1.w, play1.h };
+	Level2rect = SDL_Rect{ (SCREEN_WIDTH / 2) - (play2.w / 2), ((SCREEN_WIDTH / 6) * 2) - (play2.h / 2), play2.w, play2.h };
+	Rankingrect = SDL_Rect{ (SCREEN_WIDTH / 2) - (ranking.w / 2), ((SCREEN_WIDTH / 6) * 3) - (ranking.h / 2), ranking.w, ranking.h };
+	D_Sorect = SDL_Rect{ (SCREEN_WIDTH / 2) - (sonido.w / 2), ((SCREEN_WIDTH / 6) * 4) - (sonido.h / 2), sonido.w, sonido.h };
+	Exitrect = SDL_Rect{ (SCREEN_WIDTH / 2) - (exit.w/2), ((SCREEN_WIDTH / 6) * 5) - (exit.h/2), exit.w, exit.h };
 	
 
 

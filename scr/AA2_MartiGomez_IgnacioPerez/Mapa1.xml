@@ -19,14 +19,14 @@
     <Cd0>no</Cd0>
     <Cd1>vacio</Cd1>
     <Cd2>vacio</Cd2>
-    <Cd3>vacio</Cd3>
-    <Cd4>vacio</Cd4>
-    <Cd5>vacio</Cd5>
-    <Cd6>vacio</Cd6>
-    <Cd7>vacio</Cd7>
-    <Cd8>vacio</Cd8>
-    <Cd9>vacio</Cd9>
-    <Cd10>vacio</Cd10>
+    <Cd3>dest</Cd3>
+    <Cd4>dest</Cd4>
+    <Cd5>dest</Cd5>
+    <Cd6>dest</Cd6>
+    <Cd7>dest</Cd7>
+    <Cd8>dest</Cd8>
+    <Cd9>dest</Cd9>
+    <Cd10>dest</Cd10>
     <Cd11>vacio</Cd11>
     <Cd12>no</Cd12>
 	</Columna1> 
@@ -34,11 +34,11 @@
     <Cd0>no</Cd0>
     <Cd1>vacio</Cd1>
     <Cd2>no</Cd2>
-    <Cd3>vacio</Cd3>
+    <Cd3>dest</Cd3>
     <Cd4>no</Cd4>
-    <Cd5>vacio</Cd5>
+    <Cd5>dest</Cd5>
     <Cd6>no</Cd6>
-    <Cd7>vacio</Cd7>
+    <Cd7>dest</Cd7>
     <Cd8>no</Cd8>
     <Cd9>vacio</Cd9>
     <Cd10>no</Cd10>
@@ -47,17 +47,17 @@
 	</Columna2>
   <Columna3>
     <Cd0>no</Cd0>
-    <Cd1>vacio</Cd1>
-    <Cd2>vacio</Cd2>
+    <Cd1>dest</Cd1>
+    <Cd2>dest</Cd2>
     <Cd3>vacio</Cd3>
-    <Cd4>vacio</Cd4>
-    <Cd5>vacio</Cd5>
-    <Cd6>vacio</Cd6>
-    <Cd7>vacio</Cd7>
+    <Cd4>dest</Cd4>
+    <Cd5>dest</Cd5>
+    <Cd6>dest</Cd6>
+    <Cd7>dest</Cd7>
     <Cd8>vacio</Cd8>
-    <Cd9>vacio</Cd9>
-    <Cd10>vacio</Cd10>
-    <Cd11>vacio</Cd11>
+    <Cd9>dest</Cd9>
+    <Cd10>dest</Cd10>
+    <Cd11>dest</Cd11>
     <Cd12>no</Cd12>
   </Columna3>
   <Columna4>
@@ -77,47 +77,47 @@
   </Columna4>
   <Columna5>
     <Cd0>no</Cd0>
-    <Cd1>vacio</Cd1>
-    <Cd2>vacio</Cd2>
-    <Cd3>vacio</Cd3>
+    <Cd1>dest</Cd1>
+    <Cd2>dest</Cd2>
+    <Cd3>dest</Cd3>
     <Cd4>vacio</Cd4>
-    <Cd5>vacio</Cd5>
-    <Cd6>vacio</Cd6>
+    <Cd5>dest</Cd5>
+    <Cd6>dest</Cd6>
     <Cd7>vacio</Cd7>
-    <Cd8>vacio</Cd8>
-    <Cd9>vacio</Cd9>
-    <Cd10>vacio</Cd10>
+    <Cd8>dest</Cd8>
+    <Cd9>dest</Cd9>
+    <Cd10>dest</Cd10>
     <Cd11>vacio</Cd11>
     <Cd12>no</Cd12>
   </Columna5>
   <Columna6>
     <Cd0>no</Cd0>
-    <Cd1>vacio</Cd1>
+    <Cd1>dest</Cd1>
     <Cd2>no</Cd2>
-    <Cd3>vacio</Cd3>
+    <Cd3>dest</Cd3>
     <Cd4>no</Cd4>
-    <Cd5>vacio</Cd5>
+    <Cd5>dest</Cd5>
     <Cd6>no</Cd6>
     <Cd7>vacio</Cd7>
     <Cd8>no</Cd8>
     <Cd9>vacio</Cd9>
     <Cd10>no</Cd10>
-    <Cd11>vacio</Cd11>
+    <Cd11>dest</Cd11>
     <Cd12>no</Cd12>
   </Columna6>
   <Columna7>
     <Cd0>no</Cd0>
-    <Cd1>vacio</Cd1>
-    <Cd2>vacio</Cd2>
-    <Cd3>vacio</Cd3>
-    <Cd4>vacio</Cd4>
+    <Cd1>dest</Cd1>
+    <Cd2>dest</Cd2>
+    <Cd3>dest</Cd3>
+    <Cd4>dest</Cd4>
     <Cd5>vacio</Cd5>
-    <Cd6>vacio</Cd6>
-    <Cd7>vacio</Cd7>
-    <Cd8>vacio</Cd8>
-    <Cd9>vacio</Cd9>
-    <Cd10>vacio</Cd10>
-    <Cd11>vacio</Cd11>
+    <Cd6>dest</Cd6>
+    <Cd7>dest</Cd7>
+    <Cd8>dest</Cd8>
+    <Cd9>dest</Cd9>
+    <Cd10>dest</Cd10>
+    <Cd11>dest</Cd11>
     <Cd12>no</Cd12>
   </Columna7>
   <Columna8>
@@ -130,7 +130,7 @@
     <Cd6>no</Cd6>
     <Cd7>vacio</Cd7>
     <Cd8>no</Cd8>
-    <Cd9>vacio</Cd9>
+    <Cd9>dest</Cd9>
     <Cd10>no</Cd10>
     <Cd11>vacio</Cd11>
     <Cd12>no</Cd12>
@@ -143,26 +143,26 @@
     <Cd4>vacio</Cd4>
     <Cd5>vacio</Cd5>
     <Cd6>vacio</Cd6>
-    <Cd7>vacio</Cd7>
-    <Cd8>vacio</Cd8>
-    <Cd9>vacio</Cd9>
-    <Cd10>vacio</Cd10>
-    <Cd11>vacio</Cd11>
+    <Cd7>dest</Cd7>
+    <Cd8>dest</Cd8>
+    <Cd9>dest</Cd9>
+    <Cd10>dest</Cd10>
+    <Cd11>dest</Cd11>
     <Cd12>no</Cd12>
   </Columna9>
   <Columna10>
     <Cd0>no</Cd0>
-    <Cd1>vacio</Cd1>
+    <Cd1>dest</Cd1>
     <Cd2>no</Cd2>
-    <Cd3>vacio</Cd3>
+    <Cd3>dest</Cd3>
     <Cd4>no</Cd4>
-    <Cd5>vacio</Cd5>
+    <Cd5>dest</Cd5>
     <Cd6>no</Cd6>
-    <Cd7>vacio</Cd7>
+    <Cd7>dest</Cd7>
     <Cd8>no</Cd8>
-    <Cd9>vacio</Cd9>
+    <Cd9>dest</Cd9>
     <Cd10>no</Cd10>
-    <Cd11>vacio</Cd11>
+    <Cd11>dest</Cd11>
     <Cd12>no</Cd12>
   </Columna10>
   <Columna11>
@@ -171,24 +171,24 @@
     <Cd2>vacio</Cd2>
     <Cd3>vacio</Cd3>
     <Cd4>vacio</Cd4>
-    <Cd5>vacio</Cd5>
-    <Cd6>vacio</Cd6>
-    <Cd7>vacio</Cd7>
-    <Cd8>vacio</Cd8>
-    <Cd9>vacio</Cd9>
-    <Cd10>vacio</Cd10>
-    <Cd11>vacio</Cd11>
+    <Cd5>dest</Cd5>
+    <Cd6>dest</Cd6>
+    <Cd7>dest</Cd7>
+    <Cd8>dest</Cd8>
+    <Cd9>dest</Cd9>
+    <Cd10>dest</Cd10>
+    <Cd11>dest</Cd11>
     <Cd12>no</Cd12>
   </Columna11>
   <Columna12>
     <Cd0>no</Cd0>
     <Cd1>vacio</Cd1>
     <Cd2>no</Cd2>
-    <Cd3>vacio</Cd3>
+    <Cd3>dest</Cd3>
     <Cd4>no</Cd4>
-    <Cd5>vacio</Cd5>
+    <Cd5>dest</Cd5>
     <Cd6>no</Cd6>
-    <Cd7>vacio</Cd7>
+    <Cd7>dest</Cd7>
     <Cd8>no</Cd8>
     <Cd9>vacio</Cd9>
     <Cd10>no</Cd10>
@@ -199,15 +199,15 @@
   </Columna12>
   <Columna13>
     <Cd0>no</Cd0>
-    <Cd1>vacio</Cd1>
-    <Cd2>vacio</Cd2>
-    <Cd3>vacio</Cd3>
-    <Cd4>vacio</Cd4>
-    <Cd5>vacio</Cd5>
-    <Cd6>vacio</Cd6>
-    <Cd7>vacio</Cd7>
-    <Cd8>vacio</Cd8>
-    <Cd9>vacio</Cd9>
+    <Cd1>dest</Cd1>
+    <Cd2>dest</Cd2>
+    <Cd3>dest</Cd3>
+    <Cd4>dest</Cd4>
+    <Cd5>dest</Cd5>
+    <Cd6>dest</Cd6>
+    <Cd7>dest</Cd7>
+    <Cd8>dest</Cd8>
+    <Cd9>dest</Cd9>
     <Cd10>vacio</Cd10>
     <Cd11>vacio</Cd11>
     <Cd12>no</Cd12>

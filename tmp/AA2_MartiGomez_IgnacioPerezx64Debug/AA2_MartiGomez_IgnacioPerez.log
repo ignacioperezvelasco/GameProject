@@ -1,3 +1,4 @@
 ﻿  Level.cpp
-  AA2_MartiGomez_IgnacioPerez.vcxproj -> C:\Users\ignacio\Source\Repos\GameProject\\bin\x64Debug\AA2_MartiGomez_IgnacioPerez.exe
+c:\users\marti\desktop\bomberman\scr\aa2_martigomez_ignacioperez\level.cpp(205): warning C4244: '=': conversión de 'clock_t' a 'float'; posible pérdida de datos
+  AA2_MartiGomez_IgnacioPerez.vcxproj -> C:\Users\Marti\Desktop\Bomberman\\bin\x64Debug\AA2_MartiGomez_IgnacioPerez.exe
   0 archivo(s) copiado(s)
