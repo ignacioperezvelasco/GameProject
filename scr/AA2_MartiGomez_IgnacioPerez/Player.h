@@ -9,12 +9,11 @@ class Player:public MapObject
 {
 private:
 	SDL_Rect playerRect, playerPosition;
-	int textwidth, textheigh, framewidth, frameheigh;
 	std::string id;
 
 public:
 	Player();
-	Player(int numPlayer);
+	Player(int numPlayer, int x, int y, int vid);
 	~Player();
 
 	//atributos
@@ -25,10 +24,9 @@ public:
 
 	//ATRIBUTOS STATICOS
 	int vida;
-	int playerX1;
-	int playerY1;
-	int playerX2;
-	int playerY2;
+	int playerX;
+	int playerY;
+
 
 	//powerUps
 	bool patins;

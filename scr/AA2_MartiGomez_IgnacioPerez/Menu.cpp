@@ -5,6 +5,7 @@ Menu::Menu() :
 	Escena::Escena(SCREEN_WIDTH, SCREEN_HEIGHT), 
 	isrunning(true)
 {
+	estadoactual = escenaEscena::Estado::Menu;
 	//Fondo
 	Renderer::Instance()->LoadTexture(MENU_BG, PATH_IMG + "bgGame.jpg");
 	Background = SDL_Rect{ 0, 0, SCREEN_WIDTH, SCREEN_HEIGHT };
@@ -31,7 +32,7 @@ Menu::Menu() :
 	Vector2 play1Size = Renderer::Instance()->GetTextureSize(play1.id);
 	play1.w = play1Size.x;
 	play1.h = play1Size.y;
-
+	
 	//Play2
 	Text play2;
 	play2.id = MENU_TEXT_BUTTON_PLAY2;
@@ -82,6 +83,9 @@ Menu::Menu() :
 	Rankingrect = SDL_Rect{ 400 - (ranking.w / 2), 300 - (ranking.h / 2), ranking.w, ranking.h };
 	D_Sorect = SDL_Rect{ 400 - (sonido.w / 2), 400 - (sonido.h / 2), sonido.w, sonido.h };
 	Exitrect = SDL_Rect{ 400 - (exit.w/2), 500 - (exit.h/2), exit.w, exit.h }; 
+	
+
+
 }
 
 Menu::~Menu()
@@ -149,10 +153,7 @@ void Menu::eHandler()
 					estadoactual = escenaEscena::Estado::Exit;
 					isrunning = false;
 				}
-			case SDL_QUIT:
-				estadoactual = escenaEscena::Estado::Exit;
-
-				break;
+			
 			}
 
 		}

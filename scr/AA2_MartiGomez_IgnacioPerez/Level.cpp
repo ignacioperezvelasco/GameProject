@@ -10,7 +10,7 @@ Level::Level(int num):Escena::Escena(SCREEN_WIDTH, SCREEN_HEIGHT)
 	//Pusheamos todos los objetos
 	//Background
 	Background = SDL_Rect{ 0, 0, SCREEN_WIDTH, SCREEN_HEIGHT };
-
+	
 	//ITEMS
 	Renderer::Instance()->LoadTexture(ITEMS, PATH_IMG + "items.png");
 	Renderer::Instance()->LoadTexture(PLAYER1, PATH_IMG + "player1.png");
@@ -44,15 +44,19 @@ Level::Level(int num):Escena::Escena(SCREEN_WIDTH, SCREEN_HEIGHT)
 	columnas = std::stoi(Map->first_attribute("columnas")->value(), nullptr);
 
 	//ATRIBUTOS PARA LOS JUGADORES
-	/*Player::vida = std::stoi(Map->first_attribute("vidas")->value(), nullptr);
-	Player::playerX1 = std::stoi(Map->first_attribute("xPlayer1")->value(), nullptr);
-	Player::playerY1 = std::stoi(Map->first_attribute("yPlayer1")->value(), nullptr);
-	Player::playerX2 = std::stoi(Map->first_attribute("xPlayer2")->value(), nullptr);
-	Player::playerY2 = std::stoi(Map->first_attribute("yPlayer2")->value(), nullptr);*/
+	firstPlayer.vida = std::stoi(Map->first_attribute("vidas")->value(), nullptr);
+	firstPlayer.playerX = std::stoi(Map->first_attribute("xPlayer1")->value(), nullptr);
+	firstPlayer.playerY = std::stoi(Map->first_attribute("yPlayer1")->value(), nullptr);
+
+	secondPlayer.vida = std::stoi(Map->first_attribute("vidas")->value(), nullptr);
+	secondPlayer.playerX = std::stoi(Map->first_attribute("xPlayer2")->value(), nullptr);
+	secondPlayer.playerY = std::stoi(Map->first_attribute("yPlayer2")->value(), nullptr);
 
 	//HUD
 	tiempo = std::stoi(Map->first_attribute("tiempo")->value(), nullptr);
 
+	firstPlayer = Player(1,firstPlayer.playerX,firstPlayer.playerY,firstPlayer.vida);
+	secondPlayer = Player(2,secondPlayer.playerX,secondPlayer.playerY,secondPlayer.vida);
 	//Creamos el mapa
 	for (int i = 0; i < columnas; i++)
 	{
@@ -77,7 +81,7 @@ Level::Level(int num):Escena::Escena(SCREEN_WIDTH, SCREEN_HEIGHT)
 		}
 	}
 
-	firstPlayer = new Player(1);
+	
 
 }
 
@@ -98,13 +102,15 @@ void Level::draw()
 	
 	//Mandamos printarse a players
 	
-	firstPlayer->draw();
+	firstPlayer.draw();
 
 	Renderer::Instance()->Render();
 }
 
 void Level::update()
-{}
+{
+}
+
 void Level::eHandler() 
 {
 	SDL_Event event;
@@ -115,16 +121,16 @@ void Level::eHandler()
 			/* Check the SDLKey values and move change the coords */
 			switch (event.key.keysym.sym) {
 			case SDLK_LEFT:
-				firstPlayer->moveleft();
+				firstPlayer.moveleft();
 				break;
 			case SDLK_RIGHT:
-				firstPlayer->moveright();;
+				firstPlayer.moveright();;
 				break;
 			case SDLK_UP:
-				firstPlayer->moveup();
+				firstPlayer.moveup();
 				break;
 			case SDLK_DOWN:
-				firstPlayer->movedown();
+				firstPlayer.movedown();
 				break;
 			default:
 				break;

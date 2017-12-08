@@ -34,8 +34,8 @@ public:
 	Obstaculos *mapaObstaculos[15][13];
 
 	//Jugadores
-	Player *firstPlayer;
-	Player *secondPlayer;
+	Player firstPlayer;
+	Player secondPlayer;
 
 
 	//Array de ints para comprobar
