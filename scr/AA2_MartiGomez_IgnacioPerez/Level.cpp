@@ -114,14 +114,29 @@ void Level::update()
 void Level::eHandler() 
 {
 	SDL_Event event;
+
+	//Posiciones de los jugadores actuales
+	int playerX1 = firstPlayer.playerX;
+	int playerY1 = firstPlayer.playerY;
+	int playerX2 = secondPlayer.playerX;
+	int playerY2 = secondPlayer.playerY;
+
 	while (SDL_PollEvent(&event)) {
 		switch (event.type) {
 			/* Look for a keypress */
 		case SDL_KEYDOWN:
 			/* Check the SDLKey values and move change the coords */
 			switch (event.key.keysym.sym) {
+			//PLAYER 1
 			case SDLK_LEFT:
-				firstPlayer.moveleft();
+				if (mapaObstaculos[playerX1-SPRITEWIDTH][playerY1] == mapaObstaculos[playerX1][playerY1])
+				{
+					playerX1 = playerX1;
+				}
+				else
+				{
+					firstPlayer.moveleft();
+				}
 				break;
 			case SDLK_RIGHT:
 				firstPlayer.moveright();;
@@ -131,6 +146,20 @@ void Level::eHandler()
 				break;
 			case SDLK_DOWN:
 				firstPlayer.movedown();
+				break;
+
+			//PLAYER 2
+			case SDLK_a:
+				secondPlayer.moveleft();
+				break;
+			case SDLK_d:
+				secondPlayer.moveright();
+				break;
+			case SDLK_w:
+				secondPlayer.moveup();
+				break;
+			case SDLK_s:
+				secondPlayer.movedown();
 				break;
 			default:
 				break;
