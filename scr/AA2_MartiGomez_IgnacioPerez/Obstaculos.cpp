@@ -9,23 +9,36 @@ Obstaculos::Obstaculos()
 Obstaculos::Obstaculos(tipoObj::tipo tip, int x, int y):
 	type(tip)	
 {
-	sprite.x =  48;
-	sprite.y =  48;
-	sprite.h = rect.h = sprite.w = rect.w = 48;
+	//Creacion de los rectangulos de los items
+	if (tip == tipoObj::tipo::DEST)
+	{
+		sprite.x = (x * SPRITEWIDTH);
+		sprite.y = (y * SPRITEHEIGHT) + (SPRITEZ);
+		sprite.w = rect.w = SPRITEWIDTH;
+		sprite.h = rect.h = SPRITEHEIGHT;
+		rect.x = 0;
+		rect.y = 0;
+	}
+	else if (tip == tipoObj::tipo::NODEST)
+	{
+		sprite.x = (x * SPRITEWIDTH);
+		sprite.y = (y * SPRITEHEIGHT) + (SPRITEZ);
+		sprite.w = rect.w = SPRITEWIDTH;
+		sprite.h = rect.h = SPRITEHEIGHT;
+		rect.x = 0;
+		rect.y = 0;
+	}
+	else if (tip == tipoObj::tipo::NONE)
+	{
 
-	
-
-	Obstaculos::draw();
-
+	}
 }
 
 void Obstaculos::draw()
-{
-	if (type == tipoObj::tipo::DEST)
-	{			
-		Renderer::Instance()->LoadTexture(ITEMS, PATH_IMG + "bgCastle.jpg");
-		Renderer::Instance()->PushSprite(ITEMS, rect, sprite);
-	}
+{		
+
+	//Pusheamos OBJETOS al MAPA
+	Renderer::Instance()->PushSprite(ITEMS, rect, sprite);
 }
 
 void Obstaculos::update()

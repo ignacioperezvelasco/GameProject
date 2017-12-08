@@ -121,31 +121,31 @@ void Menu::eHandler()
 
 				if ((positionMouseX < Level1rect.x + Level1rect.w) && (positionMouseX > Level1rect.x) && ((positionMouseY < Level1rect.h + Level1rect.y) && (positionMouseY > Level1rect.y)))
 				{
-					std::cout << "HOLA Level1" << std::endl;
+					//std::cout << "HOLA Level1" << std::endl;
 					estadoactual = escenaEscena::Estado::Level1;
 					isrunning = false;
 				}
 				else if ((positionMouseX < Level2rect.x + Level2rect.w) && (positionMouseX > Level2rect.x) && ((positionMouseY < Level2rect.h + Level2rect.y) && (positionMouseY > Level2rect.y)))
 				{
-					std::cout << "HOLA Level2" << std::endl;
+					//std::cout << "HOLA Level2" << std::endl;
 					estadoactual = escenaEscena::Estado::Level2;
 					isrunning = false;
 				}
 				else if ((positionMouseX < Rankingrect.x + Rankingrect.w) && (positionMouseX > Rankingrect.x) && ((positionMouseY < Rankingrect.h + Rankingrect.y) && (positionMouseY > Rankingrect.y)))
 				{
-					std::cout << "HOLA Ranking" << std::endl;
+					//std::cout << "HOLA Ranking" << std::endl;
 					estadoactual = escenaEscena::Estado::RankingEscena;
 					isrunning = false;
 				}
 				else if ((positionMouseX < D_Sorect.x + D_Sorect.w) && (positionMouseX > D_Sorect.x) && ((positionMouseY < D_Sorect.h + D_Sorect.y) && (positionMouseY > D_Sorect.y)))
 				{
-					std::cout << "HOLA Sonido" << std::endl;
+					//std::cout << "HOLA Sonido" << std::endl;
 					estadoactual = escenaEscena::Estado::Mute;
 					isrunning = false;
 				}
 				else if ((positionMouseX < Exitrect.x + Exitrect.w) && (positionMouseX > Exitrect.x) && ((positionMouseY < Exitrect.h + Exitrect.y) && (positionMouseY > Exitrect.y)))
 				{
-					std::cout << "HOLA Exit" << std::endl;
+					//std::cout << "HOLA Exit" << std::endl;
 					estadoactual = escenaEscena::Estado::Exit;
 					isrunning = false;
 				}

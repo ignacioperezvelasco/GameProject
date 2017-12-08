@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?> 
-<Mapa vidas="3"  tiempo="80" filas="13" columnas="15"> 
+<Mapa vidas="3"  tiempo="80" filas="13" columnas="15" xPlayer1 ="1" yPlayer1 ="1" xPlayer2 ="13" yPlayer2 ="11"> 
 	<Columna0> 
 		<Cd0>no</Cd0>
 		<Cd1>no</Cd1>

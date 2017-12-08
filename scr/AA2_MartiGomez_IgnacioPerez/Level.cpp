@@ -1,7 +1,6 @@
 #include "stdafx.h"
 #include "Level.h"
 
-
 Level::Level()
 {
 }
@@ -12,9 +11,8 @@ Level::Level(int num):Escena::Escena(SCREEN_WIDTH, SCREEN_HEIGHT)
 	//Background
 	Background = SDL_Rect{ 0, 0, SCREEN_WIDTH, SCREEN_HEIGHT };
 
-
-	//Declaramos textura
-	Renderer::Instance()->LoadTexture(ITEMS, PATH_IMG + "kintoun.png");
+	//ITEMS
+	Renderer::Instance()->LoadTexture(ITEMS, PATH_IMG + "items.png");
 
 	//MAPA SEGUN EL NUMERO QUE RECIBAMOS
 	std::string nameFichero;
@@ -42,14 +40,16 @@ Level::Level(int num):Escena::Escena(SCREEN_WIDTH, SCREEN_HEIGHT)
 
 	filas = std::stoi(Map->first_attribute("filas")->value(), nullptr);
 	columnas = std::stoi(Map->first_attribute("columnas")->value(), nullptr);
-	vidas = std::stoi(Map->first_attribute("vidas")->value(), nullptr);;
-	tiempo = std::stoi(Map->first_attribute("tiempo")->value(), nullptr);;
 
-	//Comprobamos si tenemos bien el numero de filas, columnas, vidas y tiempo
-	/*std::cout << filas << std::endl;
-	std::cout << columnas << std::endl;
-	std::cout << vidas << std::endl;
-	std::cout << tiempo << std::endl;*/
+	//ATRIBUTOS PARA LOS JUGADORES
+	/*Player::vida = std::stoi(Map->first_attribute("vidas")->value(), nullptr);
+	Player::playerX1 = std::stoi(Map->first_attribute("xPlayer1")->value(), nullptr);
+	Player::playerY1 = std::stoi(Map->first_attribute("yPlayer1")->value(), nullptr);
+	Player::playerX2 = std::stoi(Map->first_attribute("xPlayer2")->value(), nullptr);
+	Player::playerY2 = std::stoi(Map->first_attribute("yPlayer2")->value(), nullptr);*/
+
+	//HUD
+	tiempo = std::stoi(Map->first_attribute("tiempo")->value(), nullptr);
 
 	//Creamos el mapa
 	for (int i = 0; i < columnas; i++)
@@ -62,18 +62,14 @@ Level::Level(int num):Escena::Escena(SCREEN_WIDTH, SCREEN_HEIGHT)
 			std::string s = casilla->value();
 			if (s == "no")
 			{
-				//Comprobamos si lee bien
-				//mapa[i][j] = new Obstaculos(1);
-				mapaObstaculos[i][j] = new Obstaculos(tipoObj::tipo::DEST,i,j);
+				mapaObstaculos[i][j] = new Obstaculos(tipoObj::tipo::DEST, i, j);
 			}
 			else if (s == "vacio")
 			{
-				//Comprobamos si lee bien
 				mapaObstaculos[i][j] = new Obstaculos(tipoObj::tipo::NONE, i, j);
 			}
 			else if (s == "dest")
 			{
-				//Comprobamos si lee bien
 				mapaObstaculos[i][j] = new Obstaculos(tipoObj::tipo::NODEST, i, j);
 			}
 		}
@@ -86,17 +82,17 @@ void Level::draw()
 {
 	Renderer::Instance()->Clear();
 	Renderer::Instance()->PushImage(MENU_BG, Background);
+
 	//Se han de cargar en el renderer los obstaculos
-	/*for (int i = 0; i < columnas; i++)
+	for (int i = 0; i < columnas; i++)
 	{
 		for (int j = 0; j < filas; j++)
 		{
 			mapaObstaculos[i][j]->draw();
 		}
 		std::cout<<std::endl;
-	}*/
+	}
 	
-	Renderer::Instance()->PushSprite(ITEMS, SDL_Rect{ 0, 0, 48, 48 }, SDL_Rect{ 48, 48, 48, 48});
 	Renderer::Instance()->Render();
 }
 

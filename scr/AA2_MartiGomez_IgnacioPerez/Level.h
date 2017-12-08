@@ -1,6 +1,7 @@
 #pragma once
 #include "Escena.h"
 #include "Obstaculos.h"
+#include "Player.h"
 #include <iostream>
 #include <string> 
 
@@ -27,7 +28,6 @@ public:
 	SDL_Rect Background;
 	int filas; 
 	int columnas;
-	int vidas;
 	int tiempo;
 
 	//ARRAY MAPA

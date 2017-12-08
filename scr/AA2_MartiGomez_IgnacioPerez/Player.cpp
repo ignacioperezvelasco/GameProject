@@ -1,34 +1,22 @@
 #include "stdafx.h"
 #include "Player.h"
-#include "Bomb.h"
-#include <vector>
 
-
-Player::Player(int numPlayer,Renderer rend):
+Player::Player(int numPlayer, int playerX1, int playerY1, int playerX2, int playerY2):
 	identificador(numPlayer),
-	vida(3),
 	punts(0),
 	patins(false),
 	casc(false),
-	myBomb(nullptr),
-	myRenderer(rend)
+	myBomb(nullptr)
 {	
 	if (identificador == 1) {
-		playerPosition.x = 0;	//Se ha de cambiar segun xml
-		playerPosition.y = 0;	//Se ha de cambiar segun xml
-		id = "player1";
-		Renderer::Instance()->LoadTexture(id, "../../res/ing/player1.png");
-		SDL_QueryTexture(playerTexture, NULL, NULL, &textwidth, &textheigh);
-		
+
+		Renderer::Instance()->LoadTexture(PLAYER1, PATH_IMG + "player1.png");
 	}
 	else if (identificador == 2)
-	{
-		playerPosition.x = 0;	//Se ha de cambiar segun xml
-		playerPosition.y = 0;	//Se ha de cambiar segun xml
-		id = "player2";
-		Renderer::Instance()->LoadTexture(id, "../../res/ing/player2.png");
-		SDL_QueryTexture(playerTexture, NULL, NULL, &textwidth, &textheigh);
+	{	
+		Renderer::Instance()->LoadTexture(PLAYER2, PATH_IMG + "player2.png");
 	}
+
 	framewidth = textwidth / 3;
 	frameheigh = textheigh / 4;
 	playerRect.x = framewidth*2;
@@ -80,9 +68,9 @@ void Player::PowerCasc()
 
 void Player::draw()
 {
+	Renderer::Instance()->PushSprite(PLAYER1, playerRect, playerPosition);
 
-		Renderer::Instance()->PushSprite(id, playerRect, playerPosition);
-
+	//Renderer::Instance()->PushSprite(PLAYER2, playerRect, playerPosition);
 }
 
 void Player::update() {}
