@@ -18,45 +18,45 @@ Player::Player(int numPlayer, int x, int y, int vid):
 	if (identificador == 1)
 	{
 		//en el mapa pos
-		sprite.x = playerX + SPRITEWIDTH;
-		sprite.y = playerY + (SPRITEHEIGHT + SPRITEZ);
+		sprite.x = playerX+SPRITEWIDTH;
+		sprite.y =playerY+(SPRITEHEIGHT+SPRITEZ);
 		sprite.w = rect.w = SPRITEWIDTH;
 		sprite.h = rect.h = SPRITEHEIGHT;
 			//posicion en la imagen
 		rect.x = SPRITEWIDTH;
 		rect.y = SPRITEHEIGHT*2;
 	}
+
 	else if (identificador == 2) {
-		sprite.x = playerX + SPRITEWIDTH;
-		sprite.y = playerY + (SPRITEHEIGHT + SPRITEZ);
+		sprite.x = playerX*SPRITEWIDTH;
+		sprite.y = (playerY*SPRITEHEIGHT) + SPRITEZ;
 		sprite.w = rect.w = SPRITEWIDTH;
 		sprite.h = rect.h = SPRITEHEIGHT;
-
 		//posicion en la imagen
 		rect.x = SPRITEWIDTH;
-		rect.y = SPRITEHEIGHT*2;
+		rect.y = SPRITEHEIGHT * 2;
 	}
 	
 }
 
 void Player::moveup() 
 {
-	sprite.y-= SPRITEWIDTH;
+	sprite.y-= 6;
 }
 
 void Player::movedown() 
 {
-	sprite.y+= SPRITEWIDTH;
+	sprite.y+= 6;
 }
 
 void Player::moveright() 
 {
-	sprite.x+= SPRITEWIDTH;
+	sprite.x+= 6;
 }
 
 void Player::moveleft() 
 {
-	sprite.x-= SPRITEWIDTH;
+	sprite.x-= 6;
 }
 
 void Player::plantBomb() 

@@ -5,7 +5,7 @@
 #include "Constants.h"
 
  namespace tipoObj {
-	enum tipo { DEST, NODEST,NONE };
+	enum tipo { DEST, NODEST,NONE, PLAYER };
 }
 
 class Obstaculos :public MapObject

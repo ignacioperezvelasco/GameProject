@@ -80,7 +80,7 @@ Level::Level(int num):Escena::Escena(SCREEN_WIDTH, SCREEN_HEIGHT)
 			}
 		}
 	}
-
+	//mapaObstaculos[firstPlayer.sprite.x / columnas][firstPlayer.sprite.y / filas]->type = tipoObj::tipo::PLAYER;
 	
 
 }
@@ -103,6 +103,7 @@ void Level::draw()
 	//Mandamos printarse a players
 	
 	firstPlayer.draw();
+	secondPlayer.draw();
 
 	Renderer::Instance()->Render();
 }
@@ -114,31 +115,61 @@ void Level::update()
 void Level::eHandler() 
 {
 	SDL_Event event;
+	int posIzq;
+	int posDerech;
+	int posAbajo;
+	int posArriba;
 
-	//Posiciones de los jugadores actuales
-	int playerX1 = firstPlayer.playerX;
-	int playerY1 = firstPlayer.playerY;
-	int playerX2 = secondPlayer.playerX;
-	int playerY2 = secondPlayer.playerY;
+	// posicionesJug;
+	int posPlayI;
+	int posPlayJ;
+	int esquinaInfIzq;
 
+	Obstaculos prueva(mapaObstaculos[1][1]->type, 1, 1);
 	while (SDL_PollEvent(&event)) {
 		switch (event.type) {
 			/* Look for a keypress */
 		case SDL_KEYDOWN:
+
+		
+
 			/* Check the SDLKey values and move change the coords */
 			switch (event.key.keysym.sym) {
-			//PLAYER 1
+				
 			case SDLK_LEFT:
-				if (mapaObstaculos[playerX1-SPRITEWIDTH][playerY1] == mapaObstaculos[playerX1][playerY1])
+				posPlayI = firstPlayer.sprite.x / SPRITEWIDTH;
+				posPlayJ = (firstPlayer.sprite.y - 80) / SPRITEHEIGHT;
+
+				esquinaInfIzq = (firstPlayer.sprite.y-80)+46;
+
+				posIzq = posPlayI-1;
+				
+				if ((mapaObstaculos[posIzq][posPlayJ]->type == tipoObj::tipo::NONE) &&  (esquinaInfIzq/SPRITEHEIGHT == posPlayJ))
 				{
-					playerX1 = playerX1;
+					firstPlayer.moveleft();
+				}				
+				else 
+				{
+					if (firstPlayer.sprite.x - 6 > SPRITEWIDTH + ((posIzq*SPRITEWIDTH)))
+					{
+						firstPlayer.moveleft();
+					}
+				}
+				
+				break;
+			case SDLK_RIGHT:
+				posPlayI = (firstPlayer.sprite.x+ SPRITEWIDTH) / SPRITEWIDTH;
+				posPlayJ = (firstPlayer.sprite.y - 80) / SPRITEHEIGHT;
+				posDerech= posPlayI + 1;
+
+				if ((mapaObstaculos[posDerech][posPlayJ]->type != tipoObj::tipo::NONE))
+				{
+					
 				}
 				else
 				{
-					firstPlayer.moveleft();
+					firstPlayer.moveright();
 				}
-				break;
-			case SDLK_RIGHT:
 				firstPlayer.moveright();;
 				break;
 			case SDLK_UP:
@@ -147,22 +178,7 @@ void Level::eHandler()
 			case SDLK_DOWN:
 				firstPlayer.movedown();
 				break;
-
-			//PLAYER 2
-			case SDLK_a:
-				secondPlayer.moveleft();
-				break;
-			case SDLK_d:
-				secondPlayer.moveright();
-				break;
-			case SDLK_w:
-				secondPlayer.moveup();
-				break;
-			case SDLK_s:
-				secondPlayer.movedown();
-				break;
-			default:
-				break;
+		
 			}
 		}
 	}
