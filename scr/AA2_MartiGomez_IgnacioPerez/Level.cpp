@@ -124,6 +124,7 @@ void Level::eHandler()
 	int posPlayI;
 	int posPlayJ;
 	int esquinaInfIzq;
+	int esquinaInfDer;
 
 	Obstaculos prueva(mapaObstaculos[1][1]->type, 1, 1);
 	while (SDL_PollEvent(&event)) {
@@ -138,13 +139,13 @@ void Level::eHandler()
 				
 			case SDLK_LEFT:
 				posPlayI = firstPlayer.sprite.x / SPRITEWIDTH;
-				posPlayJ = (firstPlayer.sprite.y - 80) / SPRITEHEIGHT;
+				posPlayJ = (firstPlayer.sprite.y - SPRITEZ) / SPRITEHEIGHT;
 
-				esquinaInfIzq = (firstPlayer.sprite.y-80)+46;
+				esquinaInfIzq = (firstPlayer.sprite.y - SPRITEZ) + 46;
 
-				posIzq = posPlayI-1;
+				posIzq = posPlayI - 1;
 				
-				if ((mapaObstaculos[posIzq][posPlayJ]->type == tipoObj::tipo::NONE) &&  (esquinaInfIzq/SPRITEHEIGHT == posPlayJ))
+				if ((mapaObstaculos[posIzq][posPlayJ]->type == tipoObj::tipo::NONE) && (esquinaInfIzq / SPRITEHEIGHT == posPlayJ))
 				{
 					firstPlayer.moveleft();
 				}				
@@ -158,24 +159,70 @@ void Level::eHandler()
 				
 				break;
 			case SDLK_RIGHT:
-				posPlayI = (firstPlayer.sprite.x+ SPRITEWIDTH) / SPRITEWIDTH;
-				posPlayJ = (firstPlayer.sprite.y - 80) / SPRITEHEIGHT;
-				posDerech= posPlayI + 1;
+				/*posPlayI = (firstPlayer.sprite.x + SPRITEWIDTH) / SPRITEWIDTH;
+				posPlayJ = (firstPlayer.sprite.y - SPRITEZ) / SPRITEHEIGHT;
+				posDerech= posPlayI + 1;*/
 
-				if ((mapaObstaculos[posDerech][posPlayJ]->type != tipoObj::tipo::NONE))
-				{
-					
-				}
-				else
+				//CARACTER QUE NO TENGO EN EL TECLADO
+				//<>
+
+				posPlayI = (firstPlayer.sprite.x + SPRITEWIDTH) / SPRITEWIDTH;
+				posPlayJ = (firstPlayer.sprite.y - SPRITEZ) / SPRITEHEIGHT;
+
+				posDerech = posPlayI + 1;
+
+				if ((mapaObstaculos[posDerech][posPlayJ]->type == tipoObj::tipo::NONE))
 				{
 					firstPlayer.moveright();
 				}
-				firstPlayer.moveright();;
+				else
+				{
+					if (firstPlayer.sprite.x + 6 < SPRITEWIDTH + ((posDerech*SPRITEWIDTH)))
+					{
+						firstPlayer.moveright();
+					}
+				}
 				break;
 			case SDLK_UP:
-				firstPlayer.moveup();
+
+				posPlayI = firstPlayer.sprite.x / SPRITEWIDTH;
+				posPlayJ = (firstPlayer.sprite.y - SPRITEZ) / SPRITEHEIGHT;
+
+				posArriba = posPlayJ - 1;
+
+				if ((mapaObstaculos[posPlayI][posArriba]->type == tipoObj::tipo::NONE))
+				{
+					firstPlayer.moveup();
+				}
+				else
+				{
+					if (firstPlayer.sprite.y + 6 < (SPRITEHEIGHT) + ((posArriba*(SPRITEHEIGHT))))
+					{
+						firstPlayer.moveup();
+					}
+				}
 				break;
 			case SDLK_DOWN:
+
+				posPlayI = firstPlayer.sprite.x / SPRITEWIDTH;
+				posPlayJ = (firstPlayer.sprite.y - SPRITEZ) / SPRITEHEIGHT;
+
+				posAbajo = posPlayJ + 1;
+
+				if ((mapaObstaculos[posPlayI][posAbajo]->type == tipoObj::tipo::NONE))
+				{
+					firstPlayer.movedown();
+				}
+				else
+				{
+					if (firstPlayer.sprite.y - 6 > (SPRITEHEIGHT) + ((posAbajo*(SPRITEHEIGHT))))
+					{
+						firstPlayer.movedown();
+					}
+				}
+
+
+
 				firstPlayer.movedown();
 				break;
 		
