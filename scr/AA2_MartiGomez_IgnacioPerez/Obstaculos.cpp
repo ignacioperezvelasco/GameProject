@@ -16,7 +16,7 @@ Obstaculos::Obstaculos(tipoObj::tipo tip, int x, int y):
 		sprite.y = (y * SPRITEHEIGHT) + (SPRITEZ);
 		sprite.w = rect.w = SPRITEWIDTH;
 		sprite.h = rect.h = SPRITEHEIGHT;
-		rect.x = 0;
+		rect.x = SPRITEWIDTH;
 		rect.y = 0;
 	}
 	else if (tip == tipoObj::tipo::NODEST)

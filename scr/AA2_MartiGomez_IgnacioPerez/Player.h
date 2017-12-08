@@ -13,8 +13,8 @@ private:
 	std::string id;
 
 public:
-	
-	Player(int numPlayer, int playerX1, int playerY1, int playerX2, int playerY2);
+	Player();
+	Player(int numPlayer);
 	~Player();
 
 	//atributos

@@ -33,6 +33,11 @@ public:
 	//ARRAY MAPA
 	Obstaculos *mapaObstaculos[15][13];
 
+	//Jugadores
+	Player *firstPlayer;
+	Player *secondPlayer;
+
+
 	//Array de ints para comprobar
 	int mapa[15][13];
 

@@ -1,46 +1,57 @@
 #include "stdafx.h"
 #include "Player.h"
 
-Player::Player(int numPlayer, int playerX1, int playerY1, int playerX2, int playerY2):
+Player::Player() {}
+
+Player::Player(int numPlayer):
 	identificador(numPlayer),
 	punts(0),
 	patins(false),
 	casc(false),
 	myBomb(nullptr)
 {	
-	if (identificador == 1) {
-
-		Renderer::Instance()->LoadTexture(PLAYER1, PATH_IMG + "player1.png");
-	}
-	else if (identificador == 2)
-	{	
-		Renderer::Instance()->LoadTexture(PLAYER2, PATH_IMG + "player2.png");
-	}
-
+	/*
 	framewidth = textwidth / 3;
 	frameheigh = textheigh / 4;
 	playerRect.x = framewidth*2;
-	playerRect.y = frameheigh*2;
+	playerRect.y = frameheigh*2;*/
+
+	if (identificador == 1)
+	{
+		//en el mapa pos
+		sprite.x = SPRITEWIDTH;
+		sprite.y = SPRITEHEIGHT + SPRITEZ;
+		sprite.w = rect.w = SPRITEWIDTH;
+		sprite.h = rect.h = SPRITEHEIGHT;
+			//posicion en la imagen
+		rect.x = SPRITEWIDTH;
+		rect.y = SPRITEHEIGHT*2;
+	}
+	/*else if (identificador == 2) {
+		rect.x = SPRITEWIDTH;
+		rect.y = 0;
+	}*/
+	
 }
 
 void Player::moveup() 
 {
-	playerPosition.y++;
+	sprite.y-= SPRITEWIDTH;
 }
 
 void Player::movedown() 
 {
-	playerPosition.y--;
+	sprite.y+= SPRITEWIDTH;
 }
 
 void Player::moveright() 
 {
-	playerPosition.x++;
+	sprite.x+= SPRITEWIDTH;
 }
 
 void Player::moveleft() 
 {
-	playerPosition.x--;
+	sprite.x-= SPRITEWIDTH;
 }
 
 void Player::plantBomb() 
@@ -68,9 +79,18 @@ void Player::PowerCasc()
 
 void Player::draw()
 {
-	Renderer::Instance()->PushSprite(PLAYER1, playerRect, playerPosition);
+	if(identificador == 1) 
+	{
+		Renderer::Instance()->PushSprite(PLAYER1, rect, sprite);
+	}
+	else if (identificador == 2) {
+		Renderer::Instance()->PushSprite(PLAYER2, rect, sprite);
+	}
+	else 
+	{
+		throw "error subiendo a renderer Player";
+	}
 
-	//Renderer::Instance()->PushSprite(PLAYER2, playerRect, playerPosition);
 }
 
 void Player::update() {}

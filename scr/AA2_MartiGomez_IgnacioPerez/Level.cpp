@@ -13,6 +13,8 @@ Level::Level(int num):Escena::Escena(SCREEN_WIDTH, SCREEN_HEIGHT)
 
 	//ITEMS
 	Renderer::Instance()->LoadTexture(ITEMS, PATH_IMG + "items.png");
+	Renderer::Instance()->LoadTexture(PLAYER1, PATH_IMG + "player1.png");
+	Renderer::Instance()->LoadTexture(PLAYER2, PATH_IMG + "player2.png");
 
 	//MAPA SEGUN EL NUMERO QUE RECIBAMOS
 	std::string nameFichero;
@@ -62,7 +64,7 @@ Level::Level(int num):Escena::Escena(SCREEN_WIDTH, SCREEN_HEIGHT)
 			std::string s = casilla->value();
 			if (s == "no")
 			{
-				mapaObstaculos[i][j] = new Obstaculos(tipoObj::tipo::DEST, i, j);
+				mapaObstaculos[i][j] = new Obstaculos(tipoObj::tipo::NODEST, i, j);
 			}
 			else if (s == "vacio")
 			{
@@ -70,11 +72,12 @@ Level::Level(int num):Escena::Escena(SCREEN_WIDTH, SCREEN_HEIGHT)
 			}
 			else if (s == "dest")
 			{
-				mapaObstaculos[i][j] = new Obstaculos(tipoObj::tipo::NODEST, i, j);
+				mapaObstaculos[i][j] = new Obstaculos(tipoObj::tipo::DEST, i, j);
 			}
 		}
 	}
 
+	firstPlayer = new Player(1);
 
 }
 
@@ -90,16 +93,45 @@ void Level::draw()
 		{
 			mapaObstaculos[i][j]->draw();
 		}
-		std::cout<<std::endl;
+	
 	}
 	
+	//Mandamos printarse a players
+	
+	firstPlayer->draw();
+
 	Renderer::Instance()->Render();
 }
 
 void Level::update()
 {}
 void Level::eHandler() 
-{}
+{
+	SDL_Event event;
+	while (SDL_PollEvent(&event)) {
+		switch (event.type) {
+			/* Look for a keypress */
+		case SDL_KEYDOWN:
+			/* Check the SDLKey values and move change the coords */
+			switch (event.key.keysym.sym) {
+			case SDLK_LEFT:
+				firstPlayer->moveleft();
+				break;
+			case SDLK_RIGHT:
+				firstPlayer->moveright();;
+				break;
+			case SDLK_UP:
+				firstPlayer->moveup();
+				break;
+			case SDLK_DOWN:
+				firstPlayer->movedown();
+				break;
+			default:
+				break;
+			}
+		}
+	}
+}
 
 Level::~Level()
 {}
