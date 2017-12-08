@@ -124,7 +124,9 @@ void Level::eHandler()
 	int posPlayI;
 	int posPlayJ;
 	int esquinaInfIzq;
-	int esquinaInfDer;
+	int esquinaDer;
+
+	
 
 	Obstaculos prueva(mapaObstaculos[1][1]->type, 1, 1);
 	while (SDL_PollEvent(&event)) {
@@ -151,7 +153,7 @@ void Level::eHandler()
 				}				
 				else 
 				{
-					if (firstPlayer.sprite.x - 6 > SPRITEWIDTH + ((posIzq*SPRITEWIDTH)))
+					if (firstPlayer.sprite.x - 6 >= SPRITEWIDTH + ((posIzq*SPRITEWIDTH)))
 					{
 						firstPlayer.moveleft();
 					}
@@ -170,16 +172,24 @@ void Level::eHandler()
 				posPlayJ = (firstPlayer.sprite.y - SPRITEZ) / SPRITEHEIGHT;
 
 				posDerech = posPlayI + 1;
-
-				if ((mapaObstaculos[posDerech][posPlayJ]->type == tipoObj::tipo::NONE))
+			
+				if ((firstPlayer.sprite.x + SPRITEWIDTH) == 14 * SPRITEWIDTH)
+				{
+				}
+				else if ((mapaObstaculos[posDerech][posPlayJ]->type == tipoObj::tipo::NONE))
 				{
 					firstPlayer.moveright();
 				}
 				else
 				{
-					if (firstPlayer.sprite.x + 6 < SPRITEWIDTH + ((posDerech*SPRITEWIDTH)))
+					
+					if (firstPlayer.sprite.x +SPRITEWIDTH+6 < SPRITEWIDTH + (((posDerech-1)*SPRITEWIDTH)))
 					{
 						firstPlayer.moveright();
+					}
+				else
+					{
+						firstPlayer.sprite.x = ((posDerech-1) * SPRITEWIDTH);
 					}
 				}
 				break;
@@ -189,14 +199,15 @@ void Level::eHandler()
 				posPlayJ = (firstPlayer.sprite.y - SPRITEZ) / SPRITEHEIGHT;
 
 				posArriba = posPlayJ - 1;
+				esquinaDer = firstPlayer.sprite.x+46;
 
-				if ((mapaObstaculos[posPlayI][posArriba]->type == tipoObj::tipo::NONE))
+				if ((mapaObstaculos[posPlayI][posArriba]->type == tipoObj::tipo::NONE) && ((esquinaDer/SPRITEWIDTH)==posPlayI)   )
 				{
 					firstPlayer.moveup();
 				}
 				else
 				{
-					if (firstPlayer.sprite.y + 6 < (SPRITEHEIGHT) + ((posArriba*(SPRITEHEIGHT))))
+					if (firstPlayer.sprite.y - 86 >= (SPRITEHEIGHT) + ((posArriba*(SPRITEHEIGHT))))
 					{
 						firstPlayer.moveup();
 					}

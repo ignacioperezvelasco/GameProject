@@ -18,8 +18,8 @@ Player::Player(int numPlayer, int x, int y, int vid):
 	if (identificador == 1)
 	{
 		//en el mapa pos
-		sprite.x = playerX+SPRITEWIDTH;
-		sprite.y =playerY+(SPRITEHEIGHT+SPRITEZ);
+		sprite.x = playerX*SPRITEWIDTH;
+		sprite.y = (playerY*SPRITEHEIGHT) + SPRITEZ;
 		sprite.w = rect.w = SPRITEWIDTH;
 		sprite.h = rect.h = SPRITEHEIGHT;
 			//posicion en la imagen
