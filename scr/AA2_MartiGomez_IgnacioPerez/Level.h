@@ -17,6 +17,10 @@ class Level:public Escena
 {
 public:
 
+	clock_t lastTime;
+	float timeDown;
+	float deltaTime;
+
 	//Constructores
 	Level();
 	Level(int num);
@@ -29,15 +33,13 @@ public:
 	SDL_Rect Background;
 	int filas; 
 	int columnas;
-	int tiempo;
+	float tiempo;
 
 	//CONVERSION DEL TIEMPO y SU DISMINUCION
 	int min;
 	int secs;
-	float deltaTime;
-	float timeDown;
-	clock_t lastTime;
-	clock_t this_time;
+	//float deltaTime;*/
+	
 
 	//HUD
 	SDL_Rect score1;

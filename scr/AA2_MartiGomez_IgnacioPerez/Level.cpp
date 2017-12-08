@@ -54,15 +54,21 @@ Level::Level(int num):Escena::Escena(SCREEN_WIDTH, SCREEN_HEIGHT)
 
 	//HUD
 	//TIEMPO
-	tiempo = std::stoi(Map->first_attribute("tiempo")->value(), nullptr);
+	tiempo = std::stof(Map->first_attribute("tiempo")->value(), nullptr);
 
 	//CONVERSION DEL TIEMPO A MINUTOS
 	/*deltaTime = 0;
 	timeDown = 10;*/
 	lastTime = clock();
 
+	/*
 	min = tiempo / 60;
 	secs = tiempo % 60;
+	*/
+	clock_t lastTime = clock();
+	float timeDown = 80;
+	float deltaTime = 0;	
+	
 
 	//JUGADORES
 	firstPlayer = Player(1,firstPlayer.playerX,firstPlayer.playerY,firstPlayer.vida);
@@ -202,12 +208,12 @@ void Level::draw()
 void Level::update()
 {	
 	//CALCULO
-	deltaTime = clock() - lastTime;
-	double fps = SCREEN_TICKS_PER_FRAME;
+	deltaTime = (clock() - lastTime);
 	lastTime = clock();
-
+	deltaTime /= CLOCKS_PER_SEC;
+	tiempo -= deltaTime;
 	min = tiempo / 60;
-	secs = tiempo % 60;
+	secs = (int)tiempo % 60;
 
 	//FUENTE
 	Font f;
@@ -224,6 +230,10 @@ void Level::update()
 	Vector2 timeSize = Renderer::Instance()->GetTextureSize(time.id);
 	time.w = timeSize.x;
 	time.h = timeSize.y;
+	if (tiempo <= 0)
+	{
+		estadoactual = escenaEscena::Estado::RankingEscena;
+	}
 
 }
 
