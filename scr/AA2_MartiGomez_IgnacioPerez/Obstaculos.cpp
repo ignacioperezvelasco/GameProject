@@ -9,7 +9,8 @@ Obstaculos::Obstaculos()
 Obstaculos::Obstaculos(tipoObj::tipo tip, int x, int y):
 	type(tip),
 	doDmg(false),
-	seDestruira(false)	
+	seDestruira(false)	,
+	isDestruct(false)
 {
 	pos[0]= x ;
 	pos[1]=y;
@@ -72,9 +73,9 @@ void Obstaculos::update()
 		{
 			bomba = new Bomb(sprite.x / SPRITEHEIGHT, sprite.y / SPRITEHEIGHT);
 		}		
-		else if (bomba->existe) 
+		if (bomba->existe) 
 		{
-			bomba->update(rect.x, rect.y, objeto,0,seDestruira);
+			bomba->update(rect.x, rect.y, objeto,0,seDestruira, isDestruct);
 			if ((rect.x == -1) && (rect.y == -1))
 			{
 				rect.x = rect.y = 0;
@@ -96,7 +97,7 @@ void Obstaculos::update()
 		{
 			bomba = new Bomb(sprite.x / SPRITEHEIGHT, sprite.y / SPRITEHEIGHT);
 		}
-		bomba->update(rect.x, rect.y,objeto, 1, seDestruira);
+		bomba->update(rect.x, rect.y,objeto, 1, seDestruira, isDestruct);
 	}
 	else if (type == tipoObj::tipo::ARRIBA2)
 	{
@@ -110,7 +111,7 @@ void Obstaculos::update()
 		{
 			bomba = new Bomb(sprite.x / SPRITEHEIGHT, sprite.y / SPRITEHEIGHT);
 		}
-		bomba->update(rect.x, rect.y, objeto, 5, seDestruira);
+		bomba->update(rect.x, rect.y, objeto, 5, seDestruira, isDestruct);
 	}
 	else if (type == tipoObj::tipo::DERECHA1)
 	{
@@ -124,7 +125,7 @@ void Obstaculos::update()
 		{
 			bomba = new Bomb(sprite.x / SPRITEHEIGHT, sprite.y / SPRITEHEIGHT);
 		}
-		bomba->update(rect.x, rect.y, objeto, 2, seDestruira);
+		bomba->update(rect.x, rect.y, objeto, 2, seDestruira, isDestruct);
 	}
 	else if (type == tipoObj::tipo::DERECHA2)
 	{
@@ -138,7 +139,7 @@ void Obstaculos::update()
 		{
 			bomba = new Bomb(sprite.x / SPRITEHEIGHT, sprite.y / SPRITEHEIGHT);
 		}
-		bomba->update(rect.x, rect.y, objeto, 3, seDestruira);
+		bomba->update(rect.x, rect.y, objeto, 3, seDestruira, isDestruct);
 	}
 	else if (type == tipoObj::tipo::IZQUIERDA1)
 	{
@@ -152,7 +153,7 @@ void Obstaculos::update()
 		{
 			bomba = new Bomb(sprite.x / SPRITEHEIGHT, sprite.y / SPRITEHEIGHT);
 		}
-		bomba->update(rect.x, rect.y, objeto, 2, seDestruira);
+		bomba->update(rect.x, rect.y, objeto, 2, seDestruira, isDestruct);
 	}
 	else if (type == tipoObj::tipo::IZQUIERDA2)
 	{
@@ -166,7 +167,7 @@ void Obstaculos::update()
 		{
 			bomba = new Bomb(sprite.x / SPRITEHEIGHT, sprite.y / SPRITEHEIGHT);
 		}
-		bomba->update(rect.x, rect.y, objeto, 4, seDestruira);
+		bomba->update(rect.x, rect.y, objeto, 4, seDestruira, isDestruct);
 	}
 	else if (type == tipoObj::tipo::ABAJO1)
 	{
@@ -180,7 +181,7 @@ void Obstaculos::update()
 		{
 			bomba = new Bomb(sprite.x / SPRITEHEIGHT, sprite.y / SPRITEHEIGHT);
 		}
-		bomba->update(rect.x, rect.y, objeto,1, seDestruira);
+		bomba->update(rect.x, rect.y, objeto,1, seDestruira, isDestruct);
 	}
 	else if (type == tipoObj::tipo::ABAJO2)
 	{
@@ -194,21 +195,20 @@ void Obstaculos::update()
 		{
 			bomba = new Bomb(sprite.x / SPRITEHEIGHT, sprite.y / SPRITEHEIGHT);
 		}
-		bomba->update(rect.x, rect.y, objeto, 6, seDestruira);
+		bomba->update(rect.x, rect.y, objeto, 6, seDestruira, isDestruct);
 	}
 	else if ((type == tipoObj::tipo::DEST) && (seDestruira == true))
 	{
-		sprite.x = (pos[0] * SPRITEWIDTH);
-		sprite.y = (pos[1] * SPRITEHEIGHT) + (SPRITEZ);
-		sprite.w = rect.w = SPRITEWIDTH;
-		sprite.h = rect.h = SPRITEHEIGHT;
-		rect.x = 0;
-		rect.y = SPRITEHEIGHT;
+		
 		if (bomba == nullptr)
 		{
 			bomba = new Bomb(sprite.x / SPRITEHEIGHT, sprite.y / SPRITEHEIGHT);
 		}
-		bomba->update(rect.x, rect.y, objeto, 7, seDestruira);
+		bomba->update(rect.x, rect.y, objeto, 7, seDestruira, isDestruct);
+		rect.x = SPRITEWIDTH;
+		rect.y = 0;
+		
+		
 	}
 	else if (type == tipoObj::tipo::NONE)
 	{
@@ -219,6 +219,11 @@ void Obstaculos::update()
 		rect.x = 0;
 		rect.y = SPRITEHEIGHT;
 		objeto = TRANSPARENTE;
+	}
+	if (isDestruct == true)
+	{
+		type = tipoObj::tipo::NONE;
+		bomba = nullptr;
 	}
 	if (objeto == EXPLOSION)
 	{

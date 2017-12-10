@@ -7,22 +7,23 @@
 #include "Constants.h"
 
  namespace tipoObj {
-	enum tipo { DEST, NODEST,NONE, PLAYER, BOMB, ARRIBA1,ARRIBA2,DERECHA1,DERECHA2,IZQUIERDA1,IZQUIERDA2,ABAJO1,ABAJO2, };
+	enum tipo { DEST, NODEST,NONE, PLAYER, BOMB, ARRIBA1,ARRIBA2,DERECHA1,DERECHA2,IZQUIERDA1,IZQUIERDA2,ABAJO1,ABAJO2};
 }
 
 class Obstaculos :public MapObject
 {
 private:
+
 	int tiempo;
 	clock_t timer;
 	int pos[2];
-	bool isDestruct;
+	
 	Bomb* bomba;
 	std::string objeto;
 	
 
 public:
-
+	bool isDestruct;
 	bool seDestruira;
 	bool doDmg;
 	Obstaculos();

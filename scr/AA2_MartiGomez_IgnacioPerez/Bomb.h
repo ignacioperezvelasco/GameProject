@@ -18,9 +18,7 @@ class Bomb:public MapObject
 	bool explotarBomba;
 
 	void draw();
-	void update(int &x, int &y, std::string &nombreImg,int indicador, bool &dest);
-	void updateOther(int &x, int &y,int ubicacion);
-	
+	void update(int &x, int &y, std::string &nombreImg,int indicador, bool &dest, bool &acabado);
 
 	~Bomb();
 };

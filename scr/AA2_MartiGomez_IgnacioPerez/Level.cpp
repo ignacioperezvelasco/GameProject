@@ -385,6 +385,7 @@ void Level::eHandler()
 
 
 			case SDLK_SPACE:
+
 				posPlayI = (firstPlayer.sprite.x) / SPRITEWIDTH;
 				posPlayJ = (firstPlayer.sprite.y - SPRITEZ + SPRITEHEIGHT - 1) / SPRITEHEIGHT;
 				if (firstPlayer.puedoPlantar == true) {
@@ -399,14 +400,16 @@ void Level::eHandler()
 					{
 						mapaObstaculos[posPlayI + 1][posPlayJ]->seDestruira = true;
 					}
-					if ((posPlayI + 1) < columnas) {
-						if ((mapaObstaculos[posPlayI + 2][posPlayJ]->type == tipoObj::tipo::NONE))
-						{
-							mapaObstaculos[posPlayI + 2][posPlayJ]->type = tipoObj::tipo::DERECHA2;
-						}
-						else if (mapaObstaculos[posPlayI + 2][posPlayJ]->type == tipoObj::tipo::DEST)
-						{
-							mapaObstaculos[posPlayI + 2][posPlayJ]->seDestruira = true;
+					if (mapaObstaculos[posPlayI + 1][posPlayJ]->seDestruira != true) {
+						if ((posPlayI + 1) < columnas) {
+							if ((mapaObstaculos[posPlayI + 2][posPlayJ]->type == tipoObj::tipo::NONE))
+							{
+								mapaObstaculos[posPlayI + 2][posPlayJ]->type = tipoObj::tipo::DERECHA2;
+							}
+							else if (mapaObstaculos[posPlayI + 2][posPlayJ]->type == tipoObj::tipo::DEST)
+							{
+								mapaObstaculos[posPlayI + 2][posPlayJ]->seDestruira = true;
+							}
 						}
 					}
 					//IZQUIERDA
@@ -418,14 +421,16 @@ void Level::eHandler()
 					{
 						mapaObstaculos[posPlayI - 1][posPlayJ]->seDestruira = true;
 					}
-					if (((posPlayI - 2) > 0)) {
-						if ((mapaObstaculos[posPlayI - 2][posPlayJ]->type == tipoObj::tipo::NONE))
-						{
-							mapaObstaculos[posPlayI - 2][posPlayJ]->type = tipoObj::tipo::IZQUIERDA2;
-						}
-						else if (mapaObstaculos[posPlayI - 2][posPlayJ]->type == tipoObj::tipo::DEST)
-						{
-							mapaObstaculos[posPlayI - 2][posPlayJ]->seDestruira = true;
+					if (mapaObstaculos[posPlayI - 1][posPlayJ]->seDestruira != true) {
+						if (((posPlayI - 2) > 0)) {
+							if ((mapaObstaculos[posPlayI - 2][posPlayJ]->type == tipoObj::tipo::NONE))
+							{
+								mapaObstaculos[posPlayI - 2][posPlayJ]->type = tipoObj::tipo::IZQUIERDA2;
+							}
+							else if (mapaObstaculos[posPlayI - 2][posPlayJ]->type == tipoObj::tipo::DEST)
+							{
+								mapaObstaculos[posPlayI - 2][posPlayJ]->seDestruira = true;
+							}
 						}
 					}
 					//ABAJO
@@ -436,14 +441,16 @@ void Level::eHandler()
 					{
 						mapaObstaculos[posPlayI][posPlayJ + 1]->seDestruira = true;
 					}
-					if ((posPlayJ + 2) < filas)
-					{
-						if ((mapaObstaculos[posPlayI][posPlayJ + 2]->type == tipoObj::tipo::NONE)) {
-							mapaObstaculos[posPlayI][posPlayJ + 2]->type = tipoObj::tipo::ABAJO2;
-						}
-						else if (mapaObstaculos[posPlayI][posPlayJ + 2]->type == tipoObj::tipo::DEST)
+					if (mapaObstaculos[posPlayI][posPlayJ + 1]->seDestruira != true) {
+						if ((posPlayJ + 2) < filas)
 						{
-							mapaObstaculos[posPlayI][posPlayJ + 2]->seDestruira = true;
+							if ((mapaObstaculos[posPlayI][posPlayJ + 2]->type == tipoObj::tipo::NONE)) {
+								mapaObstaculos[posPlayI][posPlayJ + 2]->type = tipoObj::tipo::ABAJO2;
+							}
+							else if (mapaObstaculos[posPlayI][posPlayJ + 2]->type == tipoObj::tipo::DEST)
+							{
+								mapaObstaculos[posPlayI][posPlayJ + 2]->seDestruira = true;
+							}
 						}
 					}
 					//ARRIBA
@@ -455,14 +462,16 @@ void Level::eHandler()
 					{
 						mapaObstaculos[posPlayI][posPlayJ - 1]->seDestruira = true;
 					}
-					if ((posPlayJ - 2) > 0) 
-					{
-						if ((mapaObstaculos[posPlayI][posPlayJ - 2]->type != tipoObj::tipo::NONE)) {
-							mapaObstaculos[posPlayI][posPlayJ - 2]->type = tipoObj::tipo::ARRIBA2;
-						}
-						else if (mapaObstaculos[posPlayI][posPlayJ - 2]->type == tipoObj::tipo::DEST)
+					if (mapaObstaculos[posPlayI][posPlayJ - 1]->seDestruira != true) {
+						if ((posPlayJ - 2) > 0)
 						{
-							mapaObstaculos[posPlayI][posPlayJ - 2]->seDestruira = true;
+							if ((mapaObstaculos[posPlayI][posPlayJ - 2]->type != tipoObj::tipo::NONE)) {
+								mapaObstaculos[posPlayI][posPlayJ - 2]->type = tipoObj::tipo::ARRIBA2;
+							}
+							else if (mapaObstaculos[posPlayI][posPlayJ - 2]->type == tipoObj::tipo::DEST)
+							{
+								mapaObstaculos[posPlayI][posPlayJ - 2]->seDestruira = true;
+							}
 						}
 					}
 					firstPlayer.puedoPlantar = false;
