@@ -20,8 +20,9 @@ public:
 	int identificador;
 	int punts;
 	bool puedoPlantar;
-	Bomb *myBomb;
-
+	bool jusDamaged;
+	clock_t timer;
+	
 	//ATRIBUTOS STATICOS
 	int vida;
 	int playerX;
@@ -37,13 +38,14 @@ public:
 	void movedown();
 	void moveright();
 	void moveleft();
-	void plantBomb(int playerX, int playerY);
+	void plantBomb();
 	void sumarPunts(int a);
 	void PowerUpPatins();
 	void PowerCasc();
+	void reciveDmg();
 
-	void draw();
-	void update();
+	void draw() override;
+	void update() override;
 
 };
 

@@ -15,7 +15,8 @@ Level::Level(int num):Escena::Escena(SCREEN_WIDTH, SCREEN_HEIGHT)
 	Renderer::Instance()->LoadTexture(ITEMS, PATH_IMG + "items.png");
 	Renderer::Instance()->LoadTexture(PLAYER1, PATH_IMG + "player1.png");
 	Renderer::Instance()->LoadTexture(PLAYER2, PATH_IMG + "player2.png");
-
+	Renderer::Instance()->LoadTexture(EXPLOSION, PATH_IMG + "explosion.png"); 
+	Renderer::Instance()->LoadTexture(TRANSPARENTE, PATH_IMG + "transparente.png");
 	//MAPA SEGUN EL NUMERO QUE RECIBAMOS
 	std::string nameFichero;
 	if (num == 1)
@@ -26,6 +27,8 @@ Level::Level(int num):Escena::Escena(SCREEN_WIDTH, SCREEN_HEIGHT)
 	{
 		nameFichero = "Mapa2.xml";
 	}
+
+	
 
 	//Creacion del documento para poder leer su contenido
 	rapidxml::xml_document<> doc;
@@ -57,15 +60,26 @@ Level::Level(int num):Escena::Escena(SCREEN_WIDTH, SCREEN_HEIGHT)
 	tiempo = std::stof(Map->first_attribute("tiempo")->value(), nullptr);
 
 	//CONVERSION DEL TIEMPO A MINUTOS
+	/*deltaTime = 0;
+	timeDown = 10;*/
 	lastTime = clock();
 
+	/*
+	min = tiempo / 60;
+	secs = tiempo % 60;
+	*/
 	clock_t lastTime = clock();
 	float timeDown = 80;
 	float deltaTime = 0;	
-	
+	int auxBomb=0;
+	int counter=0;
+	timerBomba = 0;
+
 	//JUGADORES
 	firstPlayer = Player(1,firstPlayer.playerX,firstPlayer.playerY,firstPlayer.vida);
 	secondPlayer = Player(2,secondPlayer.playerX,secondPlayer.playerY,secondPlayer.vida);
+	
+
 
 	//TEXTO HUD
 	//FUENTE
@@ -191,6 +205,10 @@ void Level::draw()
 	
 	}
 	
+	if (firstPlayer.puedoPlantar == false)
+	{
+		//firstPlayerBomb.draw();
+	}
 	//Mandamos printarse a players
 	firstPlayer.draw();
 	secondPlayer.draw();
@@ -227,7 +245,23 @@ void Level::update()
 	{
 		estadoactual = escenaEscena::Estado::RankingEscena;
 	}
+	for (int i = 0; i < columnas; i++)
+	{
+		for (int j = 0; j < filas; j++)
+		{
+			mapaObstaculos[i][j]->update();
+		}
 
+	}
+	//comprobamos jugador
+	if (mapaObstaculos[firstPlayer.sprite.x / SPRITEWIDTH][firstPlayer.sprite.y / SPRITEHEIGHT]->doDmg == true)
+	{
+		firstPlayer.reciveDmg();
+	}
+	if ((timerBomba - tiempo) > 7)
+	{
+		firstPlayer.puedoPlantar = true;
+	}
 }
 
 void Level::eHandler() 
@@ -251,29 +285,32 @@ void Level::eHandler()
 		case SDL_KEYDOWN:
 			/* Check the SDLKey values and move change the coords */
 			switch (event.key.keysym.sym) {
-				
+
 			case SDLK_LEFT:
+
 				posPlayI = firstPlayer.sprite.x / SPRITEWIDTH;
 				posPlayJ = (firstPlayer.sprite.y - SPRITEZ) / SPRITEHEIGHT;
 
 				esquinaInfIzq = (firstPlayer.sprite.y - SPRITEZ) + 46;
 
 				posIzq = posPlayI - 1;
-				
-				if ((mapaObstaculos[posIzq][posPlayJ]->type == tipoObj::tipo::NONE) && (esquinaInfIzq / SPRITEHEIGHT == posPlayJ))
+
+				if (((mapaObstaculos[posIzq][posPlayJ]->type == tipoObj::tipo::NONE) || (mapaObstaculos[posIzq][posPlayJ]->type == tipoObj::tipo::ARRIBA1) || (mapaObstaculos[posIzq][posPlayJ]->type == tipoObj::tipo::ARRIBA2) || (mapaObstaculos[posIzq][posPlayJ]->type == tipoObj::tipo::IZQUIERDA1) || (mapaObstaculos[posIzq][posPlayJ]->type == tipoObj::tipo::IZQUIERDA2) || (mapaObstaculos[posIzq][posPlayJ]->type == tipoObj::tipo::DERECHA1) || (mapaObstaculos[posIzq][posPlayJ]->type == tipoObj::tipo::DERECHA2) || (mapaObstaculos[posIzq][posPlayJ]->type == tipoObj::tipo::ABAJO1) || (mapaObstaculos[posIzq][posPlayJ]->type == tipoObj::tipo::ABAJO2)) && (esquinaInfIzq / SPRITEHEIGHT == posPlayJ))
 				{
 					firstPlayer.moveleft();
-				}				
-				else 
+				}
+				else
 				{
 					if (firstPlayer.sprite.x - 6 >= SPRITEWIDTH + ((posIzq*SPRITEWIDTH)))
 					{
 						firstPlayer.moveleft();
 					}
 				}
-				
+
 				break;
 			case SDLK_RIGHT:
+
+
 				/*posPlayI = (firstPlayer.sprite.x + SPRITEWIDTH) / SPRITEWIDTH;
 				posPlayJ = (firstPlayer.sprite.y - SPRITEZ) / SPRITEHEIGHT;
 				posDerech= posPlayI + 1;*/
@@ -281,76 +318,177 @@ void Level::eHandler()
 				//CARACTER QUE NO TENGO EN EL TECLADO
 				//<>
 
-				posPlayI = (firstPlayer.sprite.x + SPRITEWIDTH) / SPRITEWIDTH;
+				posPlayI = (firstPlayer.sprite.x + SPRITEWIDTH - 1) / SPRITEWIDTH;
 				posPlayJ = (firstPlayer.sprite.y - SPRITEZ) / SPRITEHEIGHT;
 
 				posDerech = posPlayI + 1;
-			
+
+				esquinaDer = (firstPlayer.sprite.y + SPRITEHEIGHT-SPRITEZ-1)/SPRITEHEIGHT;
+
 				if ((firstPlayer.sprite.x + SPRITEWIDTH) == 14 * SPRITEWIDTH)
 				{
+					firstPlayer.sprite.x = 14 * SPRITEWIDTH;
 				}
-				else if ((mapaObstaculos[posDerech][posPlayJ]->type == tipoObj::tipo::NONE))
+				else if (((mapaObstaculos[posDerech][posPlayJ]->type == tipoObj::tipo::NONE) || (mapaObstaculos[posDerech][posPlayJ]->type == tipoObj::tipo::ARRIBA1) || (mapaObstaculos[posDerech][posPlayJ]->type == tipoObj::tipo::ARRIBA2) || (mapaObstaculos[posDerech][posPlayJ]->type == tipoObj::tipo::IZQUIERDA1) || (mapaObstaculos[posDerech][posPlayJ]->type == tipoObj::tipo::IZQUIERDA2) || (mapaObstaculos[posDerech][posPlayJ]->type == tipoObj::tipo::DERECHA1) || (mapaObstaculos[posDerech][posPlayJ]->type == tipoObj::tipo::DERECHA2) || (mapaObstaculos[posDerech][posPlayJ]->type == tipoObj::tipo::ABAJO1) || (mapaObstaculos[posDerech][posPlayJ]->type == tipoObj::tipo::ABAJO2)) && (esquinaDer==posPlayJ))
 				{
 					firstPlayer.moveright();
 				}
-				else
+				else if ((mapaObstaculos[posDerech][posPlayJ]->type != tipoObj::tipo::NONE))
 				{
 					
-					if (firstPlayer.sprite.x +SPRITEWIDTH+6 < SPRITEWIDTH + (((posDerech-1)*SPRITEWIDTH)))
+					if (((SPRITEWIDTH + (((posDerech - 1)*SPRITEWIDTH))) - (firstPlayer.sprite.x + SPRITEWIDTH + 6)) < 6)
 					{
+						firstPlayer.sprite.x = (posDerech - 1)*SPRITEWIDTH;
+					}
+					else if (firstPlayer.sprite.x + SPRITEWIDTH + 6 < SPRITEWIDTH + (((posDerech - 1)*SPRITEWIDTH)))
+					{
+						prueva.type = mapaObstaculos[posDerech][posPlayJ]->type;
 						firstPlayer.moveright();
 					}
-				else
-					{
-						firstPlayer.sprite.x = ((posDerech-1) * SPRITEWIDTH);
-					}
+
 				}
 				break;
+
 			case SDLK_UP:
 
 				posPlayI = firstPlayer.sprite.x / SPRITEWIDTH;
 				posPlayJ = (firstPlayer.sprite.y - SPRITEZ) / SPRITEHEIGHT;
 
 				posArriba = posPlayJ - 1;
-				esquinaDer = firstPlayer.sprite.x+46;
+				esquinaDer = firstPlayer.sprite.x + SPRITEWIDTH-1;
 
-				if ((mapaObstaculos[posPlayI][posArriba]->type == tipoObj::tipo::NONE) && ((esquinaDer/SPRITEWIDTH)==posPlayI)   )
+				if (((mapaObstaculos[posPlayI][posArriba]->type == tipoObj::tipo::NONE) || (mapaObstaculos[posPlayI][posArriba]->type == tipoObj::tipo::ARRIBA1) || (mapaObstaculos[posPlayI][posArriba]->type == tipoObj::tipo::ARRIBA2) || (mapaObstaculos[posPlayI][posArriba]->type == tipoObj::tipo::IZQUIERDA1) || (mapaObstaculos[posPlayI][posArriba]->type == tipoObj::tipo::IZQUIERDA2) || (mapaObstaculos[posPlayI][posArriba]->type == tipoObj::tipo::DERECHA1) || (mapaObstaculos[posPlayI][posArriba]->type == tipoObj::tipo::DERECHA2) || (mapaObstaculos[posPlayI][posArriba]->type == tipoObj::tipo::ABAJO1) || (mapaObstaculos[posPlayI][posArriba]->type == tipoObj::tipo::ABAJO2)) && ((esquinaDer / SPRITEWIDTH) == posPlayI))
 				{
 					firstPlayer.moveup();
 				}
 				else
 				{
-					if (firstPlayer.sprite.y - 86 >= (SPRITEHEIGHT) + ((posArriba*(SPRITEHEIGHT))))
+					if (firstPlayer.sprite.y - 86 >= (SPRITEHEIGHT)+((posArriba*(SPRITEHEIGHT))))
 					{
 						firstPlayer.moveup();
 					}
 				}
 				break;
+
 			case SDLK_DOWN:
 
-				posPlayI = firstPlayer.sprite.x / SPRITEWIDTH;
-				posPlayJ = (firstPlayer.sprite.y - SPRITEZ) / SPRITEHEIGHT;
+				posPlayI = (firstPlayer.sprite.x) / SPRITEWIDTH;
+				posPlayJ = (firstPlayer.sprite.y - SPRITEZ + SPRITEHEIGHT - 1) / SPRITEHEIGHT;
 
 				posAbajo = posPlayJ + 1;
-
-				if ((mapaObstaculos[posPlayI][posAbajo]->type == tipoObj::tipo::NONE))
+				esquinaDer = (firstPlayer.sprite.x + SPRITEWIDTH - 1)/SPRITEWIDTH;
+				
+				if (((mapaObstaculos[posPlayI][posAbajo]->type == tipoObj::tipo::NONE) || (mapaObstaculos[posPlayI][posAbajo]->type == tipoObj::tipo::ARRIBA1) || (mapaObstaculos[posPlayI][posAbajo]->type == tipoObj::tipo::ARRIBA2) || (mapaObstaculos[posPlayI][posAbajo]->type == tipoObj::tipo::IZQUIERDA1) || (mapaObstaculos[posPlayI][posAbajo]->type == tipoObj::tipo::IZQUIERDA2) || (mapaObstaculos[posPlayI][posAbajo]->type == tipoObj::tipo::DERECHA1) || (mapaObstaculos[posPlayI][posAbajo]->type == tipoObj::tipo::DERECHA2) || (mapaObstaculos[posPlayI][posAbajo]->type == tipoObj::tipo::ABAJO1) || (mapaObstaculos[posPlayI][posAbajo]->type == tipoObj::tipo::ABAJO2)) && (esquinaDer == posPlayI))
 				{
 					firstPlayer.movedown();
 				}
-				else
+				else if ((mapaObstaculos[posPlayI][posAbajo]->type != tipoObj::tipo::NONE) )
 				{
-					if (firstPlayer.sprite.y - 6 > (SPRITEHEIGHT) + ((posAbajo*(SPRITEHEIGHT))))
+					posDerech = ((SPRITEHEIGHT + (((posAbajo - 1)*SPRITEHEIGHT)) + SPRITEZ) - (firstPlayer.sprite.y + SPRITEHEIGHT + 6));
+
+					if (((SPRITEHEIGHT + (((posAbajo - 1)*SPRITEHEIGHT))+SPRITEZ) - (firstPlayer.sprite.y + SPRITEHEIGHT + 6)) < 6)
+					{
+						firstPlayer.sprite.y = ((posAbajo-1)*SPRITEHEIGHT)+SPRITEZ;
+					}
+					else if(firstPlayer.sprite.y + 6 + SPRITEHEIGHT < SPRITEZ+SPRITEHEIGHT + (((posAbajo-1)*SPRITEHEIGHT)))
 					{
 						firstPlayer.movedown();
 					}
 				}
-				firstPlayer.movedown();
+				else if ((firstPlayer.sprite.y + 6 < (SPRITEHEIGHT)+(((posAbajo)*(SPRITEHEIGHT)))) && ((esquinaDer / SPRITEWIDTH)) == posPlayI)
+				{
+					{
+						firstPlayer.movedown();
+					}
+				}
 				break;
-			case SDLK_RCTRL:
 
-				//Creacion de bomba
-				firstPlayer.plantBomb(firstPlayer.sprite.x, firstPlayer.sprite.y);
 
+			case SDLK_SPACE:
+				posPlayI = (firstPlayer.sprite.x) / SPRITEWIDTH;
+				posPlayJ = (firstPlayer.sprite.y - SPRITEZ + SPRITEHEIGHT - 1) / SPRITEHEIGHT;
+				if (firstPlayer.puedoPlantar == true) {
+					mapaObstaculos[posPlayI][posPlayJ]->type = tipoObj::tipo::BOMB;
+
+					//DERECHA
+					if (mapaObstaculos[posPlayI + 1][posPlayJ]->type == tipoObj::tipo::NONE) 
+					{
+						mapaObstaculos[posPlayI + 1][posPlayJ]->type = tipoObj::tipo::DERECHA1;
+					}
+					else if (mapaObstaculos[posPlayI + 1][posPlayJ]->type == tipoObj::tipo::DEST)
+					{
+						mapaObstaculos[posPlayI + 1][posPlayJ]->seDestruira = true;
+					}
+					if ((posPlayI + 1) < columnas) {
+						if ((mapaObstaculos[posPlayI + 2][posPlayJ]->type == tipoObj::tipo::NONE))
+						{
+							mapaObstaculos[posPlayI + 2][posPlayJ]->type = tipoObj::tipo::DERECHA2;
+						}
+						else if (mapaObstaculos[posPlayI + 2][posPlayJ]->type == tipoObj::tipo::DEST)
+						{
+							mapaObstaculos[posPlayI + 2][posPlayJ]->seDestruira = true;
+						}
+					}
+					//IZQUIERDA
+					if (mapaObstaculos[posPlayI - 1][posPlayJ]->type==tipoObj::tipo::NONE) 
+					{
+					mapaObstaculos[posPlayI - 1][posPlayJ]->type = tipoObj::tipo::IZQUIERDA1;
+					}
+					else if (mapaObstaculos[posPlayI - 1][posPlayJ]->type == tipoObj::tipo::DEST)
+					{
+						mapaObstaculos[posPlayI - 1][posPlayJ]->seDestruira = true;
+					}
+					if (((posPlayI - 2) > 0)) {
+						if ((mapaObstaculos[posPlayI - 2][posPlayJ]->type == tipoObj::tipo::NONE))
+						{
+							mapaObstaculos[posPlayI - 2][posPlayJ]->type = tipoObj::tipo::IZQUIERDA2;
+						}
+						else if (mapaObstaculos[posPlayI - 2][posPlayJ]->type == tipoObj::tipo::DEST)
+						{
+							mapaObstaculos[posPlayI - 2][posPlayJ]->seDestruira = true;
+						}
+					}
+					//ABAJO
+					if (mapaObstaculos[posPlayI][posPlayJ + 1]->type== tipoObj::tipo::NONE) {
+						mapaObstaculos[posPlayI][posPlayJ + 1]->type = tipoObj::tipo::ABAJO1;
+					}
+					else if (mapaObstaculos[posPlayI][posPlayJ + 1]->type == tipoObj::tipo::DEST)
+					{
+						mapaObstaculos[posPlayI][posPlayJ + 1]->seDestruira = true;
+					}
+					if ((posPlayJ + 2) < filas)
+					{
+						if ((mapaObstaculos[posPlayI][posPlayJ + 2]->type == tipoObj::tipo::NONE)) {
+							mapaObstaculos[posPlayI][posPlayJ + 2]->type = tipoObj::tipo::ABAJO2;
+						}
+						else if (mapaObstaculos[posPlayI][posPlayJ + 2]->type == tipoObj::tipo::DEST)
+						{
+							mapaObstaculos[posPlayI][posPlayJ + 2]->seDestruira = true;
+						}
+					}
+					//ARRIBA
+					if (mapaObstaculos[posPlayI][posPlayJ - 1]->type == tipoObj::tipo::NONE)
+					{
+						mapaObstaculos[posPlayI][posPlayJ - 1]->type = tipoObj::tipo::ARRIBA1;
+					}
+					else if (mapaObstaculos[posPlayI][posPlayJ - 1]->type == tipoObj::tipo::DEST)
+					{
+						mapaObstaculos[posPlayI][posPlayJ - 1]->seDestruira = true;
+					}
+					if ((posPlayJ - 2) > 0) 
+					{
+						if ((mapaObstaculos[posPlayI][posPlayJ - 2]->type != tipoObj::tipo::NONE)) {
+							mapaObstaculos[posPlayI][posPlayJ - 2]->type = tipoObj::tipo::ARRIBA2;
+						}
+						else if (mapaObstaculos[posPlayI][posPlayJ - 2]->type == tipoObj::tipo::DEST)
+						{
+							mapaObstaculos[posPlayI][posPlayJ - 2]->seDestruira = true;
+						}
+					}
+					firstPlayer.puedoPlantar = false;
+					timerBomba = tiempo;					
+						
+				}
 
 				break;
 			}

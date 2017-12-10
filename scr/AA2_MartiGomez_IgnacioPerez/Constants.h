@@ -30,6 +30,8 @@ const std::string MENU_TEXT_BUTTON_RANKING = "MENU_TEXT_RANKING";
 const std::string MENU_TEXT_BUTTON_MUTE = "MENU_TEXT_MUTE";
 
 const std::string ITEMS = "ITEMS";
+const std::string EXPLOSION = "EXPLOSION";
+const std::string TRANSPARENTE = "TRANSPARENTE";
 const std::string PLAYER1 = "PLAYER1";
 const std::string PLAYER2 = "PLAYER2";
 const std::string SCORE_PLAYER1 = "SCORE_PLAYER1";

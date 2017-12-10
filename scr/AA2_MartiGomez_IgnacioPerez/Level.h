@@ -1,8 +1,8 @@
 #pragma once
 #include "Escena.h"
 #include "Obstaculos.h"
-#include "Player.h"
 #include "Bomb.h"
+#include "Player.h"
 #include <iostream>
 #include <string> 
 #include <time.h>
@@ -17,6 +17,7 @@
 class Level:public Escena
 {
 public:
+
 
 	clock_t lastTime;
 	float timeDown;
@@ -54,7 +55,10 @@ public:
 
 	//Jugadores
 	Player firstPlayer;
+	Bomb firstPlayerBomb;
+	int timerBomba;
 	Player secondPlayer;
+	Bomb secondPlayerBomb;
 
 	//Array de ints para comprobar
 	int mapa[15][13];

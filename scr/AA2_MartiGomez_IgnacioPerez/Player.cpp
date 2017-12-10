@@ -9,9 +9,11 @@ Player::Player(int numPlayer, int x, int y, int vid):
 	punts(0),
 	patins(false),
 	casc(false),
-	myBomb(nullptr),
 	playerX(x),
-	playerY(y)
+	playerY(y),
+	puedoPlantar(true),
+	jusDamaged(false),
+	timer (clock())
 {	
 
 
@@ -59,9 +61,8 @@ void Player::moveleft()
 	sprite.x-= 6;
 }
 
-void Player::plantBomb(int PlayerX, int PlayerY) 
+void Player::plantBomb() 
 {
-	myBomb= new Bomb(PlayerX, PlayerY);
 	puedoPlantar = false;
 }
 
@@ -97,6 +98,19 @@ void Player::draw()
 		throw "error subiendo a renderer Player";
 	}
 
+}
+
+void Player::reciveDmg()
+{
+	if (jusDamaged)
+	{
+		vida--;
+		jusDamaged = true;
+	}
+	if (clock() - timer >= CLOCKS_PER_SEC * 4)
+	{
+		jusDamaged = false;
+	}
 }
 
 void Player::update() {}
