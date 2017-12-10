@@ -480,6 +480,215 @@ void Level::eHandler()
 				}
 
 				break;
+			case SDLK_a:
+
+				posPlayI = secondPlayer.sprite.x / SPRITEWIDTH;
+				posPlayJ = (secondPlayer.sprite.y - SPRITEZ) / SPRITEHEIGHT;
+
+				esquinaInfIzq = (secondPlayer.sprite.y - SPRITEZ) + 46;
+
+				posIzq = posPlayI - 1;
+
+				if (((mapaObstaculos[posIzq][posPlayJ]->type == tipoObj::tipo::NONE) || (mapaObstaculos[posIzq][posPlayJ]->type == tipoObj::tipo::ARRIBA1) || (mapaObstaculos[posIzq][posPlayJ]->type == tipoObj::tipo::ARRIBA2) || (mapaObstaculos[posIzq][posPlayJ]->type == tipoObj::tipo::IZQUIERDA1) || (mapaObstaculos[posIzq][posPlayJ]->type == tipoObj::tipo::IZQUIERDA2) || (mapaObstaculos[posIzq][posPlayJ]->type == tipoObj::tipo::DERECHA1) || (mapaObstaculos[posIzq][posPlayJ]->type == tipoObj::tipo::DERECHA2) || (mapaObstaculos[posIzq][posPlayJ]->type == tipoObj::tipo::ABAJO1) || (mapaObstaculos[posIzq][posPlayJ]->type == tipoObj::tipo::ABAJO2)) && (esquinaInfIzq / SPRITEHEIGHT == posPlayJ))
+				{
+					secondPlayer.moveleft();
+				}
+				else
+				{
+					if (secondPlayer.sprite.x - 6 >= SPRITEWIDTH + ((posIzq*SPRITEWIDTH)))
+					{
+						secondPlayer.moveleft();
+					}
+				}
+
+				break;
+			case SDLK_d:
+
+				//CARACTER QUE NO TENGO EN EL TECLADO
+				//<>
+
+				posPlayI = (secondPlayer.sprite.x + SPRITEWIDTH - 1) / SPRITEWIDTH;
+				posPlayJ = (secondPlayer.sprite.y - SPRITEZ) / SPRITEHEIGHT;
+
+				posDerech = posPlayI + 1;
+
+				esquinaDer = (secondPlayer.sprite.y + SPRITEHEIGHT - SPRITEZ - 1) / SPRITEHEIGHT;
+
+				if ((secondPlayer.sprite.x + SPRITEWIDTH) == 14 * SPRITEWIDTH)
+				{
+					secondPlayer.sprite.x = 14 * SPRITEWIDTH;
+				}
+				else if (((mapaObstaculos[posDerech][posPlayJ]->type == tipoObj::tipo::NONE) || (mapaObstaculos[posDerech][posPlayJ]->type == tipoObj::tipo::ARRIBA1) || (mapaObstaculos[posDerech][posPlayJ]->type == tipoObj::tipo::ARRIBA2) || (mapaObstaculos[posDerech][posPlayJ]->type == tipoObj::tipo::IZQUIERDA1) || (mapaObstaculos[posDerech][posPlayJ]->type == tipoObj::tipo::IZQUIERDA2) || (mapaObstaculos[posDerech][posPlayJ]->type == tipoObj::tipo::DERECHA1) || (mapaObstaculos[posDerech][posPlayJ]->type == tipoObj::tipo::DERECHA2) || (mapaObstaculos[posDerech][posPlayJ]->type == tipoObj::tipo::ABAJO1) || (mapaObstaculos[posDerech][posPlayJ]->type == tipoObj::tipo::ABAJO2)) && (esquinaDer == posPlayJ))
+				{
+					secondPlayer.moveright();
+				}
+				else if ((mapaObstaculos[posDerech][posPlayJ]->type != tipoObj::tipo::NONE))
+				{
+
+					if (((SPRITEWIDTH + (((posDerech - 1)*SPRITEWIDTH))) - (secondPlayer.sprite.x + SPRITEWIDTH + 6)) < 6)
+					{
+						secondPlayer.sprite.x = (posDerech - 1)*SPRITEWIDTH;
+					}
+					else if (secondPlayer.sprite.x + SPRITEWIDTH + 6 < SPRITEWIDTH + (((posDerech - 1)*SPRITEWIDTH)))
+					{
+						prueva.type = mapaObstaculos[posDerech][posPlayJ]->type;
+						secondPlayer.moveright();
+					}
+
+				}
+				break;
+
+			case SDLK_w:
+
+				posPlayI = secondPlayer.sprite.x / SPRITEWIDTH;
+				posPlayJ = (secondPlayer.sprite.y - SPRITEZ) / SPRITEHEIGHT;
+
+				posArriba = posPlayJ - 1;
+				esquinaDer = secondPlayer.sprite.x + SPRITEWIDTH - 1;
+
+				if (((mapaObstaculos[posPlayI][posArriba]->type == tipoObj::tipo::NONE) || (mapaObstaculos[posPlayI][posArriba]->type == tipoObj::tipo::ARRIBA1) || (mapaObstaculos[posPlayI][posArriba]->type == tipoObj::tipo::ARRIBA2) || (mapaObstaculos[posPlayI][posArriba]->type == tipoObj::tipo::IZQUIERDA1) || (mapaObstaculos[posPlayI][posArriba]->type == tipoObj::tipo::IZQUIERDA2) || (mapaObstaculos[posPlayI][posArriba]->type == tipoObj::tipo::DERECHA1) || (mapaObstaculos[posPlayI][posArriba]->type == tipoObj::tipo::DERECHA2) || (mapaObstaculos[posPlayI][posArriba]->type == tipoObj::tipo::ABAJO1) || (mapaObstaculos[posPlayI][posArriba]->type == tipoObj::tipo::ABAJO2)) && ((esquinaDer / SPRITEWIDTH) == posPlayI))
+				{
+					secondPlayer.moveup();
+				}
+				else
+				{
+					if (secondPlayer.sprite.y - 86 >= (SPRITEHEIGHT)+((posArriba*(SPRITEHEIGHT))))
+					{
+						secondPlayer.moveup();
+					}
+				}
+				break;
+
+			case SDLK_s:
+
+				posPlayI = (secondPlayer.sprite.x) / SPRITEWIDTH;
+				posPlayJ = (secondPlayer.sprite.y - SPRITEZ + SPRITEHEIGHT - 1) / SPRITEHEIGHT;
+
+				posAbajo = posPlayJ + 1;
+				esquinaDer = (secondPlayer.sprite.x + SPRITEWIDTH - 1) / SPRITEWIDTH;
+
+				if (((mapaObstaculos[posPlayI][posAbajo]->type == tipoObj::tipo::NONE) || (mapaObstaculos[posPlayI][posAbajo]->type == tipoObj::tipo::ARRIBA1) || (mapaObstaculos[posPlayI][posAbajo]->type == tipoObj::tipo::ARRIBA2) || (mapaObstaculos[posPlayI][posAbajo]->type == tipoObj::tipo::IZQUIERDA1) || (mapaObstaculos[posPlayI][posAbajo]->type == tipoObj::tipo::IZQUIERDA2) || (mapaObstaculos[posPlayI][posAbajo]->type == tipoObj::tipo::DERECHA1) || (mapaObstaculos[posPlayI][posAbajo]->type == tipoObj::tipo::DERECHA2) || (mapaObstaculos[posPlayI][posAbajo]->type == tipoObj::tipo::ABAJO1) || (mapaObstaculos[posPlayI][posAbajo]->type == tipoObj::tipo::ABAJO2)) && (esquinaDer == posPlayI))
+				{
+					secondPlayer.movedown();
+				}
+				else if ((mapaObstaculos[posPlayI][posAbajo]->type != tipoObj::tipo::NONE))
+				{
+					posDerech = ((SPRITEHEIGHT + (((posAbajo - 1)*SPRITEHEIGHT)) + SPRITEZ) - (secondPlayer.sprite.y + SPRITEHEIGHT + 6));
+
+					if (((SPRITEHEIGHT + (((posAbajo - 1)*SPRITEHEIGHT)) + SPRITEZ) - (secondPlayer.sprite.y + SPRITEHEIGHT + 6)) < 6)
+					{
+						secondPlayer.sprite.y = ((posAbajo - 1)*SPRITEHEIGHT) + SPRITEZ;
+					}
+					else if (secondPlayer.sprite.y + 6 + SPRITEHEIGHT < SPRITEZ + SPRITEHEIGHT + (((posAbajo - 1)*SPRITEHEIGHT)))
+					{
+						secondPlayer.movedown();
+					}
+				}
+				else if ((secondPlayer.sprite.y + 6 < (SPRITEHEIGHT)+(((posAbajo)*(SPRITEHEIGHT)))) && ((esquinaDer / SPRITEWIDTH)) == posPlayI)
+				{
+					{
+						secondPlayer.movedown();
+					}
+				}
+				break;
+
+
+			case SDLK_RCTRL:
+
+				posPlayI = (secondPlayer.sprite.x) / SPRITEWIDTH;
+				posPlayJ = (secondPlayer.sprite.y - SPRITEZ + SPRITEHEIGHT - 1) / SPRITEHEIGHT;
+				if (secondPlayer.puedoPlantar == true) {
+					mapaObstaculos[posPlayI][posPlayJ]->type = tipoObj::tipo::BOMB;
+
+					//DERECHA
+					if (mapaObstaculos[posPlayI + 1][posPlayJ]->type == tipoObj::tipo::NONE)
+					{
+						mapaObstaculos[posPlayI + 1][posPlayJ]->type = tipoObj::tipo::DERECHA1;
+					}
+					else if (mapaObstaculos[posPlayI + 1][posPlayJ]->type == tipoObj::tipo::DEST)
+					{
+						mapaObstaculos[posPlayI + 1][posPlayJ]->seDestruira = true;
+					}
+					if (mapaObstaculos[posPlayI + 1][posPlayJ]->seDestruira != true) {
+						if ((posPlayI + 1) < columnas) {
+							if ((mapaObstaculos[posPlayI + 2][posPlayJ]->type == tipoObj::tipo::NONE))
+							{
+								mapaObstaculos[posPlayI + 2][posPlayJ]->type = tipoObj::tipo::DERECHA2;
+							}
+							else if (mapaObstaculos[posPlayI + 2][posPlayJ]->type == tipoObj::tipo::DEST)
+							{
+								mapaObstaculos[posPlayI + 2][posPlayJ]->seDestruira = true;
+							}
+						}
+					}
+					//IZQUIERDA
+					if (mapaObstaculos[posPlayI - 1][posPlayJ]->type == tipoObj::tipo::NONE)
+					{
+						mapaObstaculos[posPlayI - 1][posPlayJ]->type = tipoObj::tipo::IZQUIERDA1;
+					}
+					else if (mapaObstaculos[posPlayI - 1][posPlayJ]->type == tipoObj::tipo::DEST)
+					{
+						mapaObstaculos[posPlayI - 1][posPlayJ]->seDestruira = true;
+					}
+					if (mapaObstaculos[posPlayI - 1][posPlayJ]->seDestruira != true) {
+						if (((posPlayI - 2) > 0)) {
+							if ((mapaObstaculos[posPlayI - 2][posPlayJ]->type == tipoObj::tipo::NONE))
+							{
+								mapaObstaculos[posPlayI - 2][posPlayJ]->type = tipoObj::tipo::IZQUIERDA2;
+							}
+							else if (mapaObstaculos[posPlayI - 2][posPlayJ]->type == tipoObj::tipo::DEST)
+							{
+								mapaObstaculos[posPlayI - 2][posPlayJ]->seDestruira = true;
+							}
+						}
+					}
+					//ABAJO
+					if (mapaObstaculos[posPlayI][posPlayJ + 1]->type == tipoObj::tipo::NONE) {
+						mapaObstaculos[posPlayI][posPlayJ + 1]->type = tipoObj::tipo::ABAJO1;
+					}
+					else if (mapaObstaculos[posPlayI][posPlayJ + 1]->type == tipoObj::tipo::DEST)
+					{
+						mapaObstaculos[posPlayI][posPlayJ + 1]->seDestruira = true;
+					}
+					if (mapaObstaculos[posPlayI][posPlayJ + 1]->seDestruira != true) {
+						if ((posPlayJ + 2) < filas)
+						{
+							if ((mapaObstaculos[posPlayI][posPlayJ + 2]->type == tipoObj::tipo::NONE)) {
+								mapaObstaculos[posPlayI][posPlayJ + 2]->type = tipoObj::tipo::ABAJO2;
+							}
+							else if (mapaObstaculos[posPlayI][posPlayJ + 2]->type == tipoObj::tipo::DEST)
+							{
+								mapaObstaculos[posPlayI][posPlayJ + 2]->seDestruira = true;
+							}
+						}
+					}
+					//ARRIBA
+					if (mapaObstaculos[posPlayI][posPlayJ - 1]->type == tipoObj::tipo::NONE)
+					{
+						mapaObstaculos[posPlayI][posPlayJ - 1]->type = tipoObj::tipo::ARRIBA1;
+					}
+					else if (mapaObstaculos[posPlayI][posPlayJ - 1]->type == tipoObj::tipo::DEST)
+					{
+						mapaObstaculos[posPlayI][posPlayJ - 1]->seDestruira = true;
+					}
+					if (mapaObstaculos[posPlayI][posPlayJ - 1]->seDestruira != true) {
+						if ((posPlayJ - 2) > 0)
+						{
+							if ((mapaObstaculos[posPlayI][posPlayJ - 2]->type != tipoObj::tipo::NONE)) {
+								mapaObstaculos[posPlayI][posPlayJ - 2]->type = tipoObj::tipo::ARRIBA2;
+							}
+							else if (mapaObstaculos[posPlayI][posPlayJ - 2]->type == tipoObj::tipo::DEST)
+							{
+								mapaObstaculos[posPlayI][posPlayJ - 2]->seDestruira = true;
+							}
+						}
+					}
+					secondPlayer.puedoPlantar = false;
+					timerBomba = tiempo;
+
+				}
+
+				break;
 			}
 		}
 	}

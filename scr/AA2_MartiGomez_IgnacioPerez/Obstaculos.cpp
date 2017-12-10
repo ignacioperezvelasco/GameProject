@@ -75,7 +75,7 @@ void Obstaculos::update()
 		}		
 		if (bomba->existe) 
 		{
-			bomba->update(rect.x, rect.y, objeto,0,seDestruira, isDestruct);
+			bomba->update(rect.x, rect.y, objeto, 0,seDestruira, isDestruct);
 			if ((rect.x == -1) && (rect.y == -1))
 			{
 				rect.x = rect.y = 0;
@@ -230,8 +230,9 @@ void Obstaculos::update()
 		doDmg = true;
 	}
 	else
+	{
 		doDmg = false;
-	
+	}	
 }
 Obstaculos::~Obstaculos()
 {
