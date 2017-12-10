@@ -23,10 +23,14 @@ public:
 	bool jusDamaged;
 	clock_t timer;
 	
-	//ATRIBUTOS STATICOS
+	//ATRIBUTOS 
 	int vida;
 	int playerX;
 	int playerY;
+	int counterRight;
+	int counterLeft;
+	int counterUp;
+	int counterDown;
 
 
 	//powerUps

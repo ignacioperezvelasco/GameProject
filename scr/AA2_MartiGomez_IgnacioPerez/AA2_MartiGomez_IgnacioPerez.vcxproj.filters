@@ -109,5 +109,8 @@
     <Xml Include="Mapa1.xml">
       <Filter>Source Files</Filter>
     </Xml>
+    <Xml Include="Mapa2.xml">
+      <Filter>Source Files</Filter>
+    </Xml>
   </ItemGroup>
 </Project>

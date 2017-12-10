@@ -60,14 +60,8 @@ Level::Level(int num):Escena::Escena(SCREEN_WIDTH, SCREEN_HEIGHT)
 	tiempo = std::stof(Map->first_attribute("tiempo")->value(), nullptr);
 
 	//CONVERSION DEL TIEMPO A MINUTOS
-	/*deltaTime = 0;
-	timeDown = 10;*/
 	lastTime = clock();
 
-	/*
-	min = tiempo / 60;
-	secs = tiempo % 60;
-	*/
 	clock_t lastTime = clock();
 	float timeDown = 80;
 	float deltaTime = 0;	
@@ -79,68 +73,6 @@ Level::Level(int num):Escena::Escena(SCREEN_WIDTH, SCREEN_HEIGHT)
 	firstPlayer = Player(1,firstPlayer.playerX,firstPlayer.playerY,firstPlayer.vida);
 	secondPlayer = Player(2,secondPlayer.playerX,secondPlayer.playerY,secondPlayer.vida);
 	
-
-
-	//TEXTO HUD
-	//FUENTE
-	Font f;
-	f.id = LUIGI_40;
-	f.path = PATH_FONT + "MarioLuigi2.ttf";
-	f.size = 40;
-	Renderer::Instance()->LoadFont(f);
-
-	//PLAYER 1
-		//SCORE
-		Text scorePlayer1;
-		scorePlayer1.id = SCORE_PLAYER1;
-		scorePlayer1.text = "SCORE1: " + std::to_string(firstPlayer.punts);
-		scorePlayer1.color = Color{ 0,0,0,0 };
-		Renderer::Instance()->LoadTextureText(f.id, scorePlayer1);
-		Vector2 scorePlayer1Size = Renderer::Instance()->GetTextureSize(scorePlayer1.id);
-		scorePlayer1.w = scorePlayer1Size.x;
-		scorePlayer1.h = scorePlayer1Size.y;
-
-		//LIFES
-		Text lifesPlayer1;
-		lifesPlayer1.id = LIFES_PLAYER1;
-		lifesPlayer1.text = "LIFES1: " + std::to_string(firstPlayer.vida);
-		lifesPlayer1.color = Color{ 0,0,0,0 };
-		Renderer::Instance()->LoadTextureText(f.id, lifesPlayer1);
-		Vector2 lifesPlayer1Size = Renderer::Instance()->GetTextureSize(lifesPlayer1.id);
-		lifesPlayer1.w = lifesPlayer1Size.x;
-		lifesPlayer1.h = lifesPlayer1Size.y;
-
-	//PLAYER2
-		//SCORE
-		Text scorePlayer2;
-		scorePlayer2.id = SCORE_PLAYER2;
-		scorePlayer2.text = "SCORE2: " + std::to_string(secondPlayer.punts);
-		scorePlayer2.color = Color{ 0,0,0,0 };
-		Renderer::Instance()->LoadTextureText(f.id, scorePlayer2);
-		Vector2 scorePlayer2Size = Renderer::Instance()->GetTextureSize(scorePlayer2.id);
-		scorePlayer2.w = scorePlayer2Size.x;
-		scorePlayer2.h = scorePlayer2Size.y;
-
-		//LIFES
-		Text lifesPlayer2;
-		lifesPlayer2.id = LIFES_PLAYER2;
-		lifesPlayer2.text = "LIFES2: " + std::to_string(secondPlayer.vida);
-		lifesPlayer2.color = Color{ 0,0,0,0 };
-		Renderer::Instance()->LoadTextureText(f.id, lifesPlayer2);
-		Vector2 lifesPlayer2Size = Renderer::Instance()->GetTextureSize(lifesPlayer2.id);
-		lifesPlayer2.w = lifesPlayer2Size.x;
-		lifesPlayer2.h = lifesPlayer2Size.y;
-			
-	//TIME
-		Text time;
-		time.id = TIME;
-		time.text = std::to_string(min) + ":" + std::to_string(secs);
-		time.color = Color{ 0,0,0,0 };
-		Renderer::Instance()->LoadTextureText(f.id, time);
-		Vector2 timeSize = Renderer::Instance()->GetTextureSize(time.id);
-		time.w = timeSize.x;
-		time.h = timeSize.y;
-
 	//Creamos el mapa
 	for (int i = 0; i < columnas; i++)
 	{
@@ -164,18 +96,6 @@ Level::Level(int num):Escena::Escena(SCREEN_WIDTH, SCREEN_HEIGHT)
 			}
 		}
 	}
-
-	//SDL_RECT (HUD)
-	//PLAYER 1
-	score1 = SDL_Rect{ (((SCREEN_WIDTH / 5) * 1) - CELL_BORDER) - (scorePlayer1.w / 2), ((SPRITEZ / 8 ) * 2) - (scorePlayer1.h / 2), scorePlayer1.w, scorePlayer1.h };
-	vida1 = SDL_Rect{ (((SCREEN_WIDTH / 5) * 1) - CELL_BORDER) - (lifesPlayer1.w / 2), ((SPRITEZ / 8) * 6) - (lifesPlayer1.h / 2), lifesPlayer1.w, lifesPlayer1.h };
-
-	//PLAYER2
-	score2 = SDL_Rect{ (((SCREEN_WIDTH / 5) * 4) + CELL_BORDER) - (scorePlayer2.w / 2), ((SPRITEZ / 8) * 2) - (scorePlayer2.h / 2), scorePlayer2.w, scorePlayer2.h };
-	vida2 = SDL_Rect{ (((SCREEN_WIDTH / 5) * 4) + CELL_BORDER) - (lifesPlayer2.w / 2), ((SPRITEZ / 8) * 6) - (lifesPlayer2.h / 2), lifesPlayer2.w, lifesPlayer2.h };
-
-	//TIME
-	timeRect = SDL_Rect{ (((SCREEN_WIDTH / 2))) - (time.w / 2), ((SPRITEZ / 8) * 4) - (time.h / 2), time.w, time.h };
 }
 
 void Level::draw()
@@ -233,6 +153,49 @@ void Level::update()
 	f.size = 40;
 	Renderer::Instance()->LoadFont(f);
 
+	//PLAYER 1
+	//SCORE
+	Text scorePlayer1;
+	scorePlayer1.id = SCORE_PLAYER1;
+	scorePlayer1.text = "SCORE1: " + std::to_string(firstPlayer.punts);
+	scorePlayer1.color = Color{ 0,0,0,0 };
+	Renderer::Instance()->LoadTextureText(f.id, scorePlayer1);
+	Vector2 scorePlayer1Size = Renderer::Instance()->GetTextureSize(scorePlayer1.id);
+	scorePlayer1.w = scorePlayer1Size.x;
+	scorePlayer1.h = scorePlayer1Size.y;
+
+	//LIFES
+	Text lifesPlayer1;
+	lifesPlayer1.id = LIFES_PLAYER1;
+	lifesPlayer1.text = "LIFES1: " + std::to_string(firstPlayer.vida);
+	lifesPlayer1.color = Color{ 0,0,0,0 };
+	Renderer::Instance()->LoadTextureText(f.id, lifesPlayer1);
+	Vector2 lifesPlayer1Size = Renderer::Instance()->GetTextureSize(lifesPlayer1.id);
+	lifesPlayer1.w = lifesPlayer1Size.x;
+	lifesPlayer1.h = lifesPlayer1Size.y;
+
+	//PLAYER2
+	//SCORE
+	Text scorePlayer2;
+	scorePlayer2.id = SCORE_PLAYER2;
+	scorePlayer2.text = "SCORE2: " + std::to_string(secondPlayer.punts);
+	scorePlayer2.color = Color{ 0,0,0,0 };
+	Renderer::Instance()->LoadTextureText(f.id, scorePlayer2);
+	Vector2 scorePlayer2Size = Renderer::Instance()->GetTextureSize(scorePlayer2.id);
+	scorePlayer2.w = scorePlayer2Size.x;
+	scorePlayer2.h = scorePlayer2Size.y;
+
+	//LIFES
+	Text lifesPlayer2;
+	lifesPlayer2.id = LIFES_PLAYER2;
+	lifesPlayer2.text = "LIFES2: " + std::to_string(secondPlayer.vida);
+	lifesPlayer2.color = Color{ 0,0,0,0 };
+	Renderer::Instance()->LoadTextureText(f.id, lifesPlayer2);
+	Vector2 lifesPlayer2Size = Renderer::Instance()->GetTextureSize(lifesPlayer2.id);
+	lifesPlayer2.w = lifesPlayer2Size.x;
+	lifesPlayer2.h = lifesPlayer2Size.y;
+
+	//TIME
 	Text time;
 	time.id = TIME;
 	time.text = std::to_string(min) + ":" + std::to_string(secs);
@@ -241,6 +204,19 @@ void Level::update()
 	Vector2 timeSize = Renderer::Instance()->GetTextureSize(time.id);
 	time.w = timeSize.x;
 	time.h = timeSize.y;
+
+	//SDL_RECT (HUD)
+	//PLAYER 1
+	score1 = SDL_Rect{ (((SCREEN_WIDTH / 5) * 1) - CELL_BORDER) - (scorePlayer1.w / 2), ((SPRITEZ / 8) * 2) - (scorePlayer1.h / 2), scorePlayer1.w, scorePlayer1.h };
+	vida1 = SDL_Rect{ (((SCREEN_WIDTH / 5) * 1) - CELL_BORDER) - (lifesPlayer1.w / 2), ((SPRITEZ / 8) * 6) - (lifesPlayer1.h / 2), lifesPlayer1.w, lifesPlayer1.h };
+
+	//PLAYER2
+	score2 = SDL_Rect{ (((SCREEN_WIDTH / 5) * 4) + CELL_BORDER) - (scorePlayer2.w / 2), ((SPRITEZ / 8) * 2) - (scorePlayer2.h / 2), scorePlayer2.w, scorePlayer2.h };
+	vida2 = SDL_Rect{ (((SCREEN_WIDTH / 5) * 4) + CELL_BORDER) - (lifesPlayer2.w / 2), ((SPRITEZ / 8) * 6) - (lifesPlayer2.h / 2), lifesPlayer2.w, lifesPlayer2.h };
+
+	//TIME
+	timeRect = SDL_Rect{ (((SCREEN_WIDTH / 2))) - (time.w / 2), ((SPRITEZ / 8) * 4) - (time.h / 2), time.w, time.h };
+
 	if (tiempo <= 0)
 	{
 		estadoactual = escenaEscena::Estado::RankingEscena;
