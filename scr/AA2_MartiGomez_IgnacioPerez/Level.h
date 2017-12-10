@@ -50,6 +50,14 @@ public:
 	SDL_Rect vida1;
 	SDL_Rect vida2;
 
+	//TEXTOS
+	Text scorePlayer1;
+	Text scorePlayer2;
+	Text lifesPlayer1;
+	Text lifesPlayer2;
+	Text time;
+	Font f;
+
 	//ARRAY MAPA
 	Obstaculos *mapaObstaculos[15][13];
 
