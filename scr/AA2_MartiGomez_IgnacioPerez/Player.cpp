@@ -68,6 +68,10 @@ void Player::moveup()
 		rect.y = SPRITEHEIGHT * 0;
 		counterUp = 0;
 	}
+
+	counterDown = 0;
+	counterLeft = 0;
+	counterRight = 0;
 }
 
 void Player::movedown() 
@@ -93,6 +97,10 @@ void Player::movedown()
 		rect.y = SPRITEHEIGHT * 2;
 		counterDown = 0;
 	}
+
+	counterUp = 0;
+	counterLeft = 0;
+	counterRight = 0;
 }
 
 void Player::moveright() 
@@ -118,6 +126,10 @@ void Player::moveright()
 		rect.y = SPRITEHEIGHT * 3;
 		counterRight = 0;
 	}
+
+	counterDown = 0;
+	counterLeft = 0;
+	counterUp = 0;
 }
 
 void Player::moveleft() 
@@ -143,6 +155,10 @@ void Player::moveleft()
 		rect.y = SPRITEHEIGHT * 1;
 		counterLeft = 0;
 	}
+
+	counterDown = 0;
+	counterUp = 0;
+	counterRight = 0;
 }
 
 void Player::plantBomb() 

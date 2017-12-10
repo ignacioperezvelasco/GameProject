@@ -307,7 +307,7 @@ void Level::eHandler()
 
 				if ((firstPlayer.sprite.x + SPRITEWIDTH) == 14 * SPRITEWIDTH)
 				{
-					firstPlayer.sprite.x = 14 * SPRITEWIDTH;
+					firstPlayer.sprite.x = 13 * SPRITEWIDTH;
 				}
 				else if (((mapaObstaculos[posDerech][posPlayJ]->type == tipoObj::tipo::NONE) || (mapaObstaculos[posDerech][posPlayJ]->type == tipoObj::tipo::ARRIBA1) || (mapaObstaculos[posDerech][posPlayJ]->type == tipoObj::tipo::ARRIBA2) || (mapaObstaculos[posDerech][posPlayJ]->type == tipoObj::tipo::IZQUIERDA1) || (mapaObstaculos[posDerech][posPlayJ]->type == tipoObj::tipo::IZQUIERDA2) || (mapaObstaculos[posDerech][posPlayJ]->type == tipoObj::tipo::DERECHA1) || (mapaObstaculos[posDerech][posPlayJ]->type == tipoObj::tipo::DERECHA2) || (mapaObstaculos[posDerech][posPlayJ]->type == tipoObj::tipo::ABAJO1) || (mapaObstaculos[posDerech][posPlayJ]->type == tipoObj::tipo::ABAJO2)) && (esquinaDer==posPlayJ))
 				{
@@ -401,7 +401,7 @@ void Level::eHandler()
 						mapaObstaculos[posPlayI + 1][posPlayJ]->seDestruira = true;
 					}
 					if (mapaObstaculos[posPlayI + 1][posPlayJ]->seDestruira != true) {
-						if ((posPlayI + 1) < columnas) {
+						if ((posPlayI + 2) < columnas-1) {
 							if ((mapaObstaculos[posPlayI + 2][posPlayJ]->type == tipoObj::tipo::NONE))
 							{
 								mapaObstaculos[posPlayI + 2][posPlayJ]->type = tipoObj::tipo::DERECHA2;
@@ -516,7 +516,7 @@ void Level::eHandler()
 
 				if ((secondPlayer.sprite.x + SPRITEWIDTH) == 14 * SPRITEWIDTH)
 				{
-					secondPlayer.sprite.x = 14 * SPRITEWIDTH;
+					secondPlayer.sprite.x = 13 * SPRITEWIDTH;
 				}
 				else if (((mapaObstaculos[posDerech][posPlayJ]->type == tipoObj::tipo::NONE) || (mapaObstaculos[posDerech][posPlayJ]->type == tipoObj::tipo::ARRIBA1) || (mapaObstaculos[posDerech][posPlayJ]->type == tipoObj::tipo::ARRIBA2) || (mapaObstaculos[posDerech][posPlayJ]->type == tipoObj::tipo::IZQUIERDA1) || (mapaObstaculos[posDerech][posPlayJ]->type == tipoObj::tipo::IZQUIERDA2) || (mapaObstaculos[posDerech][posPlayJ]->type == tipoObj::tipo::DERECHA1) || (mapaObstaculos[posDerech][posPlayJ]->type == tipoObj::tipo::DERECHA2) || (mapaObstaculos[posDerech][posPlayJ]->type == tipoObj::tipo::ABAJO1) || (mapaObstaculos[posDerech][posPlayJ]->type == tipoObj::tipo::ABAJO2)) && (esquinaDer == posPlayJ))
 				{
@@ -593,7 +593,7 @@ void Level::eHandler()
 				break;
 
 
-			case SDLK_RCTRL:
+			case SDLK_LCTRL:
 
 				posPlayI = (secondPlayer.sprite.x) / SPRITEWIDTH;
 				posPlayJ = (secondPlayer.sprite.y - SPRITEZ + SPRITEHEIGHT - 1) / SPRITEHEIGHT;
@@ -610,7 +610,7 @@ void Level::eHandler()
 						mapaObstaculos[posPlayI + 1][posPlayJ]->seDestruira = true;
 					}
 					if (mapaObstaculos[posPlayI + 1][posPlayJ]->seDestruira != true) {
-						if ((posPlayI + 1) < columnas) {
+						if ((posPlayI + 2) < columnas-1) {
 							if ((mapaObstaculos[posPlayI + 2][posPlayJ]->type == tipoObj::tipo::NONE))
 							{
 								mapaObstaculos[posPlayI + 2][posPlayJ]->type = tipoObj::tipo::DERECHA2;
