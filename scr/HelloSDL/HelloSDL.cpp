@@ -1,8 +1,12 @@
 #include <SDL.h>
 #include <exception>
 #include <iostream>
+#include <map>
 #include <string>
-
+#include <SDL_render.h>
+#include <SDL_image.h>
+#include <SDL_ttf.h>
+#include <SDL_mixer.h>
 
 
 
@@ -32,23 +36,69 @@ void Close(SDL_Window* &window, SDL_Renderer* &renderer) {
 int main(int argc, char *argv[]) {
 
 
-	try {
+	try
+	{
+		//Keyboard
+		std::map<int, bool> keyboard;
+
 		SDL_Window* window = nullptr;
 		SDL_Renderer* renderer = nullptr;
+
 		Init(window, renderer);
 		SDL_Event e;
+
+		//SONIDO
+		Mix_OpenAudio(22050, AUDIO_S16SYS, 2, 640);
+		Mix_Music *music = Mix_LoadMUS("../../res/music1.mp3");
+		Mix_PlayMusic(music, 1);
+
+		//CARGAMOS IMAGEN
+		SDL_Surface * image = IMG_Load("../../res/img/bg.jpg");
+		SDL_Texture * texture = SDL_CreateTextureFromSurface(renderer, image);
+
+		// MOUSE EN EL CENTRO DE LA PANTALLA
+		SDL_WarpMouseInWindow(window, SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2);
+
+		//Botones
+		TTF_Init();
+		TTF_Font *font{ TTF_OpenFont("../../res/ttf/saiyan.ttf",200) };
+		SDL_Surface *surPlay{ TTF_RenderText_Blended(font,"Play!",SDL_Color{ 0,0,255,0}) };
+		SDL_Texture *textTextPlay{ SDL_CreateTextureFromSurface(renderer,surPlay) };
+		SDL_Rect textRectPlay{ 300, 100, 100, 50 };
+
+		
+		SDL_Surface *surSound{ TTF_RenderText_Blended(font,"Sound",SDL_Color{ 0,0,255,0 }) };
+		SDL_Texture *textTextSound{ SDL_CreateTextureFromSurface(renderer,surSound) };
+		SDL_Rect textRectSound{ 300, 200, 100, 50 };
+
+		
+		SDL_Surface *surExit{ TTF_RenderText_Blended(font,"Exit",SDL_Color{ 0,0,255,0 }) };
+		SDL_Texture *textTextExit{ SDL_CreateTextureFromSurface(renderer,surExit) };
+		SDL_Rect textRectExit{ 300, 300, 100, 50 };
+		
+
 		bool quit = false;
-		SDL_Color newColor{ 0,0,0 }, prevColor{ 0,0,0 };
-		float percent = 0.0f;
-		auto lerp = [](float v0, float v1, float t) { return (1 - t)*v0 + t*v1; };
-		while (!quit) {
-			if (!SDL_PollEvent(&e)) if (e.type == SDL_QUIT) quit = true;
-			SDL_RenderClear(renderer);
-			(percent > 1.0f) ? (prevColor = newColor, newColor = { Uint8(rand() % 0xFF), Uint8(rand() % 0xFF), Uint8(rand() % 0xFF) }, percent = 0.0f)
-				: percent += .0002f;
-			SDL_SetRenderDrawColor(renderer, lerp(prevColor.r, newColor.r, percent), lerp(prevColor.g, newColor.g, percent), lerp(prevColor.b, newColor.b, percent), 0xFF);
+		while (!quit) 
+		{
+			//BACKGROUND
+			SDL_RenderCopy(renderer, texture, NULL, NULL);
+
+			//RECTANGULOS
+			SDL_SetRenderDrawColor(renderer, 150, 150, 150, 10);
+			SDL_RenderFillRect(renderer, &textRectPlay);
+			SDL_SetRenderDrawColor(renderer, 150, 150, 150, 255);
+			SDL_RenderFillRect(renderer, &textRectSound);
+			SDL_SetRenderDrawColor(renderer, 150, 150, 150, 255);
+			SDL_RenderFillRect(renderer, &textRectExit);
+
+			//TEXT
+			SDL_RenderCopy(renderer, textTextPlay, nullptr, &textRectPlay);
+			SDL_RenderCopy(renderer, textTextSound, nullptr, &textRectSound);
+			SDL_RenderCopy(renderer, textTextExit, nullptr, &textRectExit);
+
 			SDL_RenderPresent(renderer);
 		}
+		
 		Close(window, renderer);
 	}
 	catch (std::exception e) {
@@ -57,5 +107,8 @@ int main(int argc, char *argv[]) {
 		if (strlen(sdlError)) std::cout << "SDL Error: " << sdlError << std::endl;
 		std::cin.get();
 	}
+
+
+
 	return 0;
 }

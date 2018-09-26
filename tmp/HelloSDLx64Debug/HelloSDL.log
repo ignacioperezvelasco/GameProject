@@ -1,1 +1,4 @@
-﻿C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\Common7\IDE\VC\VCTargets\Platforms\x64\PlatformToolsets\v141\Toolset.targets(36,5): error MSB8036: No se encontró la versión del SDK de Windows 10.0.15063.0. Instale la versión requerida del SDK de Windows o cambie la versión del SDK en las páginas de propiedades de proyecto o haciendo clic con el botón derecho en la solución y seleccionando "Redestinar solución".
+﻿  HelloSDL.cpp
+d:\aauni\3o\repo\scr\hellosdl\hellosdl.cpp(48): warning C4101: 'e': unreferenced local variable
+  HelloSDL.vcxproj -> D:\AAUNI\3o\Repo\\bin\x64Debug\HelloSDL.exe
+  0 archivo(s) copiado(s)
